@@ -1,4 +1,4 @@
-<div align="center">
+
 
 ```
  _____ _____     _   _
@@ -9,7 +9,7 @@
 |_|         \__, |_| |_|_|_| |_|\___/|_| |_|
              |___/
 ```
-
+<div align="center">
 # 🐓 Frython
 
 ### *Python en français, sacré bleu !*
