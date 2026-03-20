@@ -6,7 +6,6 @@ import unittest
 import sys
 import os
 
-# Ajouter le dossier parent au chemin
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from frython.transpileur import transpiler
@@ -113,7 +112,6 @@ class TestsTranspileur(unittest.TestCase):
 
     def test_chaines_non_modifiees(self):
         code = transpiler('afficher("si vous si")')
-        # La chaîne ne doit pas être modifiée
         self.assertIn('"si vous si"', code)
 
     def test_lambda(self):
@@ -274,7 +272,7 @@ class TestsInterpreteur(unittest.TestCase):
 
     def test_execution_simple(self):
         code = self.interp.executer_source("x = 42", nom_fichier='<test>')
-        self.assertEqual(code, 0)  # Code de sortie 0 = succès
+        self.assertEqual(code, 0)
 
     def test_syntaxe_invalide(self):
         import io
@@ -282,7 +280,6 @@ class TestsInterpreteur(unittest.TestCase):
         f = io.StringIO()
         with redirect_stderr(f):
             code = self.interp.executer_source("si si si si:", nom_fichier='<test>')
-        # Le code devrait indiquer une erreur
         self.assertNotEqual(code, 0)
 
 
