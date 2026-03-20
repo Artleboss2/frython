@@ -1,4 +1,3 @@
-# algorithmes_tri.fy — Algorithmes de tri classiques en Frython
 
 importer random
 importer time
