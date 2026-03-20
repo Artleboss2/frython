@@ -13,9 +13,9 @@ def lire_readme():
 
 setup(
     name='frython',
-    version='1.0.0',
+    version='1.0.1',
     author='La Communauté Frython',
-    author_email='frython@example.com',
+    author_email='official.frython@gmail.com',
     description='🐓 Python en français, sacré bleu !',
     long_description=lire_readme(),
     long_description_content_type='text/markdown',
