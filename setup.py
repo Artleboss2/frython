@@ -5,7 +5,6 @@ Configuration du paquet Frython.
 from setuptools import setup, find_packages
 import os
 
-# Lire le README
 def lire_readme():
     chemin = os.path.join(os.path.dirname(__file__), 'README.md')
     with open(chemin, 'r', encoding='utf-8') as f:
