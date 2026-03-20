@@ -1,0 +1,31 @@
+name: Publier sur PyPI
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+jobs:
+  publier:
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      id-token: write
+
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@v4
+
+      - name: Installer Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Installer les outils de build
+        run: pip install build twine
+
+      - name: Construire le paquet
+        run: python -m build
+
+      - name: Publier sur PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
