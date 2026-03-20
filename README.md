@@ -17,7 +17,7 @@
 
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
 [![Licence MIT](https://img.shields.io/badge/Licence-MIT-green?style=for-the-badge)](LICENSE)
-[![Version](https://img.shields.io/badge/Version-1.0.0-orange?style=for-the-badge)](https://github.com/Artleboss2/frython/releases)
+[![Version](https://img.shields.io/badge/Version-1.0.2-orange?style=for-the-badge)](https://github.com/Artleboss2/frython/releases)
 [![Tests](https://img.shields.io/badge/Tests-✅%20Passés-brightgreen?style=for-the-badge)](tests/)
 [![Blague?](https://img.shields.io/badge/Blague-Oui%20mais%20quand%20même-red?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHRleHQgeT0iMjAiIGZvbnQtc2l6ZT0iMjAiPvCfkI88L3RleHQ+PC9zdmc+)](https://github.com/Artleboss2/frython)
 
