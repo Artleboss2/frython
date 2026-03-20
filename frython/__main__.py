@@ -62,19 +62,16 @@ Syntaxe Frython (exemples):
 
     args = analyseur.parse_args()
 
-    # Ajouter le dossier courant au chemin Python
     sys.path.insert(0, os.getcwd())
 
     from frython.interpreteur import InterpreteurFrython
     from frython.transpileur import transpiler
 
-    # Afficher les mots-clés
     if args.mots_cles:
         interp = InterpreteurFrython()
         interp._afficher_mots_cles()
         return
 
-    # Mode transpilation seule
     if args.transpiler and args.fichier:
         try:
             with open(args.fichier, 'r', encoding='utf-8') as f:
@@ -91,19 +88,16 @@ Syntaxe Frython (exemples):
 
     interp = InterpreteurFrython(verbeux=args.verbeux)
 
-    # Exécuter une commande directe
     if args.commande:
         code_sortie = interp.executer_source(args.commande, nom_fichier='<commande>')
         sys.exit(code_sortie)
 
-    # Exécuter un fichier
     if args.fichier:
         if not args.fichier.endswith('.fy'):
             print(f"⚠️  Attention: '{args.fichier}' n'a pas l'extension .fy", file=sys.stderr)
         code_sortie = interp.executer_fichier(args.fichier)
         sys.exit(code_sortie)
 
-    # REPL interactive
     interp.repl()
 
 
