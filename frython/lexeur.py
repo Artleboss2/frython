@@ -4,7 +4,6 @@ Transforme le code source Frython en tokens.
 """
 
 MOTS_CLES = {
-    # Structures de contrôle
     'si': 'SI',
     'sinon': 'SINON',
     'sinonsi': 'SINONSI',
@@ -16,24 +15,20 @@ MOTS_CLES = {
     'continuer': 'CONTINUER',
     'passer': 'PASSER',
 
-    # Fonctions
-    'def': 'DEF',           # alias anglais accepté
+    'def': 'DEF',           
     'déf': 'DEF',
     'retourner': 'RETOURNER',
     'lambda': 'LAMBDA',
 
-    # Classes
     'classe': 'CLASSE',
     'soi': 'SOI',
     'super': 'SUPER',
     'héritage': 'HERITAGE',
 
-    # Valeurs booléennes et nulles
     'Vrai': 'VRAI',
     'Faux': 'FAUX',
     'Rien': 'RIEN',
 
-    # Opérateurs logiques
     'et': 'ET',
     'ou': 'OU',
     'non': 'NON',
@@ -41,24 +36,19 @@ MOTS_CLES = {
     'pasdans': 'PASDANS',
     'est': 'EST',
 
-    # Importation
     'importer': 'IMPORTER',
     'de': 'DE',
     'comme': 'COMME',
 
-    # Exceptions
     'essayer': 'ESSAYER',
     'sauf': 'SAUF',
     'enfin': 'ENFIN',
     'lever': 'LEVER',
 
-    # Contexte
     'avec': 'AVEC',
 
-    # Assertions
     'affirmer': 'AFFIRMER',
 
-    # Fonctions intégrées (comme mots-clés spéciaux)
     'afficher': 'AFFICHER',
     'saisir': 'SAISIR',
     'type': 'TYPE',
@@ -93,43 +83,34 @@ MOTS_CLES = {
     'nonlocal': 'NONLOCAL',
     'del': 'DEL',
     'supprimer': 'SUPPRIMER',
-    'rendement': 'RENDEMENT',  # yield
-    'asynchrone': 'ASYNCHRONE',  # async
-    'attendre': 'ATTENDRE',  # await
+    'rendement': 'RENDEMENT',  
+    'asynchrone': 'ASYNCHRONE', 
+    'attendre': 'ATTENDRE',  
 }
 
 TYPES_TOKENS = [
-    # Littéraux
     'NOMBRE',
     'DECIMAL_LIT',
     'CHAINE_LIT',
     'VRAI', 'FAUX', 'RIEN',
 
-    # Identifiant
     'IDENT',
 
-    # Mots-clés de contrôle
     'SI', 'SINON', 'SINONSI',
     'TANTQUE', 'POUR', 'DANS', 'PASDANS',
     'CASSER', 'CONTINUER', 'PASSER',
     'RETOURNER', 'LAMBDA', 'EST',
 
-    # Définition
     'DEF', 'CLASSE', 'SOI', 'SUPER', 'HERITAGE',
 
-    # Import
     'IMPORTER', 'DE', 'COMME',
 
-    # Exceptions
     'ESSAYER', 'SAUF', 'ENFIN', 'LEVER',
 
-    # Contexte
     'AVEC',
 
-    # Assertion
     'AFFIRMER',
 
-    # Fonctions intégrées (tokens spéciaux)
     'AFFICHER', 'SAISIR', 'TYPE', 'LONGUEUR',
     'INTERVALLE', 'LISTE', 'DICTIONNAIRE', 'ENSEMBLE',
     'TUPLE', 'ENTIER', 'DECIMAL', 'CHAINE', 'BOOLEEN',
@@ -140,29 +121,22 @@ TYPES_TOKENS = [
     'GLOBAL', 'NONLOCAL', 'DEL', 'SUPPRIMER',
     'RENDEMENT', 'ASYNCHRONE', 'ATTENDRE',
 
-    # Opérateurs logiques
     'ET', 'OU', 'NON',
 
-    # Opérateurs arithmétiques
     'PLUS', 'MOINS', 'ETOILE', 'SLASH', 'DOUBLEETOILE', 'DOUBLESLASH', 'MODULO',
 
-    # Opérateurs de comparaison
     'EG', 'NEG', 'LT', 'GT', 'LTE', 'GTE',
 
-    # Opérateurs d'assignation
     'ASSIGNER', 'PLUSEG', 'MOINSEG', 'ETOILEEG', 'SLASHEG', 'MODEG',
 
-    # Délimiteurs
     'LPAREN', 'RPAREN',
     'LBRACKET', 'RBRACKET',
     'LBRACE', 'RBRACE',
     'VIRGULE', 'DEUXPOINTS', 'POINTVIRGULE', 'POINT',
     'FLECHE', 'AROBASE', 'TILDE',
 
-    # Opérateur walrus
     'WALRUS',
 
-    # Structure
     'INDENT', 'DEDENT', 'NEWLINE', 'EOF',
 ]
 
@@ -235,8 +209,7 @@ class Lexeur:
     def lire_chaine(self, guillemet):
         debut_ligne = self.ligne
         debut_col = self.colonne
-        self.avancer()  # ignorer le guillemet d'ouverture
-        # Gérer les triples guillemets
+        self.avancer()
         triple = False
         if self.char_actuel() == guillemet and self.regarder() == guillemet:
             self.avancer()
@@ -293,7 +266,6 @@ class Lexeur:
         while self.pos < len(self.source):
             char = self.char_actuel()
 
-            # Début de ligne — calculer l'indentation
             if self.colonne == 1 and char not in ('\n', '#', None):
                 niveau = 0
                 pos_temp = self.pos
@@ -303,32 +275,26 @@ class Lexeur:
                     else:
                         niveau += 1
                     pos_temp += 1
-                # Sauter si ligne vide ou commentaire
                 if pos_temp < len(self.source) and self.source[pos_temp] not in ('\n', '#'):
                     self.gerer_indentation(niveau)
-                # Avancer les espaces
                 while self.char_actuel() in (' ', '\t'):
                     self.avancer()
                 continue
 
-            # Espaces en milieu de ligne
             if char in (' ', '\t'):
                 self.avancer()
                 continue
 
-            # Commentaires
             if char == '#':
                 self.sauter_commentaire()
                 continue
 
-            # Nouvelle ligne
             if char == '\n':
                 if self.tokens and self.tokens[-1].type not in ('NEWLINE', 'INDENT', 'DEDENT', 'DEUXPOINTS'):
                     self.tokens.append(Token('NEWLINE', '\n', self.ligne, self.colonne))
                 self.avancer()
                 continue
 
-            # Backslash continuation de ligne
             if char == '\\' and self.regarder() == '\n':
                 self.avancer(); self.avancer()
                 continue
@@ -336,22 +302,18 @@ class Lexeur:
             debut_ligne = self.ligne
             debut_col = self.colonne
 
-            # Nombres
             if char.isdigit():
                 self.tokens.append(self.lire_nombre())
                 continue
 
-            # Chaînes
             if char in ('"', "'"):
                 self.tokens.append(self.lire_chaine(char))
                 continue
 
-            # Identifiants et mots-clés (inclut lettres accentuées)
             if char.isalpha() or char == '_' or char in 'éèêëàâùûîïôçÉÈÊÀÂÙÛÎÏÔÇ':
                 self.tokens.append(self.lire_identifiant())
                 continue
 
-            # Opérateurs et délimiteurs
             if char == '+':
                 if self.regarder() == '=':
                     self.avancer(); self.avancer()
@@ -469,7 +431,6 @@ class Lexeur:
             else:
                 raise ErreurLexicale(f"Caractère inconnu '{char}'", debut_ligne, debut_col)
 
-        # Fermer tous les blocs ouverts
         while len(self.pile_indentation) > 1:
             self.pile_indentation.pop()
             self.tokens.append(Token('DEDENT', 0, self.ligne, 1))
