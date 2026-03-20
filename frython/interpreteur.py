@@ -8,9 +8,9 @@ import os
 import traceback
 import code
 try:
-    import readline  # Pour l'historique de la REPL (Linux/Mac)
+    import readline 
 except ImportError:
-    pass  # Non disponible sur Windows, pas grave
+    pass
 
 from .transpileur import transpiler, PYTHON_VERS_MOTS_CLES
 
@@ -72,7 +72,6 @@ def traduire_erreur(message: str) -> str:
     for en, fr in traductions.items():
         message = message.replace(en, fr)
 
-    # Traduire les noms Python vers Frython dans les messages
     for py, fr in PYTHON_VERS_MOTS_CLES.items():
         message = message.replace(f"'{py}'", f"'{fr}'")
 
@@ -87,7 +86,6 @@ class InterpreteurFrython:
         self.env_global = {
             '__name__': '__frython__',
             '__doc__': 'Espace de noms Frython',
-            # Fonctions utilitaires Frython
             'quitter': self._quitter,
             'mots_cles': self._afficher_mots_cles,
         }
@@ -184,23 +182,19 @@ class InterpreteurFrython:
 
                 ligne = input(prompt)
 
-                # Commandes spéciales
                 if ligne.strip() in ('quitter()', 'exit()', 'quit()'):
                     print("Au revoir! 👋")
                     break
 
                 buffer.append(ligne)
 
-                # Vérifier si le bloc est complet
                 source_complete = '\n'.join(buffer)
 
-                # Si la ligne est vide et on est dans un bloc, exécuter
                 if ligne == '' and len(buffer) > 1:
                     self._executer_repl(source_complete, env_repl)
                     buffer = []
                     continue
 
-                # Si la ligne ne termine pas avec ':', essayer d'exécuter
                 if not ligne.rstrip().endswith(':') and not ligne.startswith(' ') and len(buffer) == 1:
                     succes = self._executer_repl(source_complete, env_repl)
                     buffer = []
@@ -221,7 +215,6 @@ class InterpreteurFrython:
             return True
         try:
             code_python = transpiler(source)
-            # Essayer eval d'abord pour les expressions
             try:
                 code_compile = compile(code_python.strip(), '<repl>', 'eval')
                 resultat = eval(code_compile, env)
