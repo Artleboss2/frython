@@ -13,7 +13,7 @@ def lire_readme():
 
 setup(
     name='frython',
-    version='1.0.8',
+    version='1.0.9',
     author='Arthur Godart',
     author_email='official.frython@gmail.com',
     description='🐓 Python en français, sacré bleu !',
