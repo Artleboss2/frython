@@ -4,6 +4,135 @@
 
 ---
 
+## [1.0.7] — 2026-03-22
+
+
+### Ajouté
+
+- **Mots-clés et fonctions** — 13 nouveau(x):
+  - `a_attribut` → `hasattr`
+  - `aiter` → `aiter`
+  - `ascii` → `ascii`
+  - `compiler` → `compile`
+  - `definir_attribut` → `setattr`
+  - `importer_module` → `__import__`
+  - `index` → `__index__`
+  - `obtenir_attribut` → `getattr`
+  - `prochain_async` → `anext`
+  - `repertoire` → `dir`
+  - `supprimer_attribut` → `delattr`
+  - `variables` → `vars`
+  - `vue_memoire` → `memoryview`
+- **Modules traduits** — 105 nouveau(x):
+  - `ast_module` → `ast`
+  - `code_module` → `code`
+  - `collections_abc` → `collections.abc`
+  - `concurrent` → `concurrent.futures`
+  - `cryptographie` → `cryptography`
+  - `curses` → `curses`
+  - `debogueur` → `pdb`
+  - `difflib` → `difflib`
+  - `dis` → `dis`
+  - `doctest` → `doctest`
+  - `fichier_entree` → `fileinput`
+  - `fnmatch` → `fnmatch`
+  - `formateur` → `formatter`
+  - `ftplib` → `ftplib`
+  - `futur` → `__future__`
+  - `gestionnaire_contexte` → `contextlib`
+  - `glob` → `glob`
+  - `grp` → `grp`
+  - `gzip` → `gzip`
+  - `heapq` → `heapq`
+  - `hmac` → `hmac`
+  - `html_analyse` → `html.parser`
+  - `http_client` → `http.client`
+  - `http_serveur` → `http.server`
+  - `imaplib` → `imaplib`
+  - `importlib` → `importlib`
+  - `ipaddress` → `ipaddress`
+  - `locale` → `locale`
+  - `lzma` → `lzma`
+  - `mailbox` → `mailbox`
+  - `marshal` → `marshal`
+  - `math` → `math`
+  - `mimetypes` → `mimetypes`
+  - `mmap` → `mmap`
+  - `msvcrt` → `msvcrt`
+  - `netrc` → `netrc`
+  - `nis` → `nis`
+  - `nntplib` → `nntplib`
+  - `operateur` → `operator`
+  - `optparse` → `optparse`
+  - `os_chemin` → `os.path`
+  - `pickle` → `pickle`
+  - `pickletools` → `pickletools`
+  - `pipes` → `pipes`
+  - `pkgutil` → `pkgutil`
+  - `poplib` → `poplib`
+  - `pprint` → `pprint`
+  - `profil` → `cProfile`
+  - `pty` → `pty`
+  - `pwd` → `pwd`
+  - `py_compile` → `py_compile`
+  - `pydoc` → `pydoc`
+  - `queue` → `queue`
+  - `quopri` → `quopri`
+  - `readline` → `readline`
+  - `reprlib` → `reprlib`
+  - `rlcompleter` → `rlcompleter`
+  - `runpy` → `runpy`
+  - `sched` → `sched`
+  - `secrets` → `secrets`
+  - `select` → `select`
+  - `selectors` → `selectors`
+  - `shelve` → `shelve`
+  - `shlex` → `shlex`
+  - `shutil` → `shutil`
+  - `smtplib` → `smtplib`
+  - `sndhdr` → `sndhdr`
+  - `spwd` → `spwd`
+  - `sqlite` → `sqlite3`
+  - `ssl` → `ssl`
+  - `stat` → `stat`
+  - `statistiques_module` → `statistics`
+  - `string_module` → `string`
+  - `stringprep` → `stringprep`
+  - `tableau_module` → `array`
+  - `telnetlib` → `telnetlib`
+  - `tempfichier` → `tempfile`
+  - `terminal` → `tty`
+  - `textwrap` → `textwrap`
+  - `timeit` → `timeit`
+  - `tkinter_module` → `tkinter`
+  - `token` → `token`
+  - `tokenize` → `tokenize`
+  - `tomllib` → `tomllib`
+  - `trace` → `trace`
+  - `turtle_module` → `turtle`
+  - `turtledemo` → `turtledemo`
+  - `types_module` → `types`
+  - `unicodedata` → `unicodedata`
+  - `urllib_analyse` → `urllib.parse`
+  - `urllib_erreur` → `urllib.error`
+  - `urllib_requete` → `urllib.request`
+  - `uu` → `uu`
+  - `venv` → `venv`
+  - `wave` → `wave`
+  - `webbrowser` → `webbrowser`
+  - `winreg` → `winreg`
+  - `winsound` → `winsound`
+  - `wsgiref` → `wsgiref`
+  - `xdrlib` → `xdrlib`
+  - `xmlrpc` → `xmlrpc`
+  - `zipapp` → `zipapp`
+  - `zipimport` → `zipimport`
+  - `zlib` → `zlib`
+  - `zoneinfo` → `zoneinfo`
+
+---
+
+
 ## [1.0.6] — 2026-03-22
 
 
