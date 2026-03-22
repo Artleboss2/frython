@@ -9,7 +9,7 @@ Usage:
     frython -t mon_programme.fy    # Voir le code Python généré (transpilation)
 """
 
-__version__ = '1.0.9'
+__version__ = '1.0.10'
 __auteur__ = 'La Communauté Frython'
 __licence__ = 'MIT'
 __description__ = 'Python en français, sacré bleu ! 🐓'
