@@ -4,6 +4,79 @@
 
 ---
 
+## [1.0.8] — 2026-03-22
+
+
+### Ajouté
+
+- **Mots-clés et fonctions** — 63 nouveau(x):
+  - `__construire_classe__` → `NATIVE.__build_class__`
+  - `__importer__` → `NATIVE.__import__`
+  - `abs` → `NATIVE.abs`
+  - `accumulateur` → `NATIVE.flywheel`
+  - `afficher_pile` → `NATIVE.printStack`
+  - `afficher_pile_inverse` → `NATIVE.printReverseStack`
+  - `afficher_pile_verbeuse` → `NATIVE.printVerboseStack`
+  - `ajouterStr` → `NATIVE.appendStr`
+  - `anext` → `NATIVE.anext`
+  - `appelable` → `NATIVE.callable`
+  - `appendStr` → `NATIVE.appendStr`
+  - `asuivant` → `NATIVE.anext`
+  - `bin` → `NATIVE.bin`
+  - `bound` → `NATIVE.bound`
+  - `callable` → `NATIVE.callable`
+  - `certains` → `NATIVE.any`
+  - `chr` → `NATIVE.chr`
+  - `clamp` → `NATIVE.clamp`
+  - `collecte_pstat` → `NATIVE.pstatcollect`
+  - `compile` → `NATIVE.compile`
+  - `configIsToday` → `NATIVE.configIsToday`
+  - `configurationEstAujourdhui` → `NATIVE.configIsToday`
+  - `creer_liste` → `NATIVE.makeList`
+  - `creer_tuple` → `NATIVE.makeTuple`
+  - `dictionnaire_histogramme` → `NATIVE.histogramDict`
+  - `div_reste` → `NATIVE.divmod`
+  - `divreste` → `NATIVE.divmod`
+  - `erreur_enregistree` → `NATIVE.exceptionLogged`
+  - `exception_enregistree` → `NATIVE.exceptionLogged`
+  - `exception_journalisee` → `NATIVE.exceptionLogged`
+  - `formater` → `NATIVE.format`
+  - `generateur_boucle` → `NATIVE.loopGen`
+  - `generateur_nul` → `NATIVE.nullGen`
+  - `interpolation_linéaire` → `NATIVE.lerp`
+  - `inverser_dictionnaire` → `NATIVE.invertDict`
+  - `inverser_dictionnaire_sans_perte` → `NATIVE.invertDictLossless`
+  - `journaliser_bloc` → `NATIVE.logBlock`
+  - `lerp` → `NATIVE.lerp`
+  - `lien` → `NATIVE.bound`
+  - `limite` → `NATIVE.bound`
+  - `n_importe_quel` → `NATIVE.any`
+  - `nom_type` → `NATIVE.typeName`
+  - `nom_type_securise` → `NATIVE.safeTypeName`
+  - `nom_unique` → `NATIVE.uniqueName`
+  - `numero_serie` → `NATIVE.serialNum`
+  - `obtenir_base` → `NATIVE.getBase`
+  - `obtenir_depot` → `NATIVE.getRepository`
+  - `pince` → `NATIVE.clamp`
+  - `point_de_rupture` → `NATIVE.breakpoint`
+  - `pointderupture` → `NATIVE.breakpoint`
+  - `profile` → `NATIVE.profiled`
+  - `rapport` → `NATIVE.report`
+  - `regulateur` → `NATIVE.flywheel`
+  - `rep` → `NATIVE.dir`
+  - `repr_rapide` → `NATIVE.fastRepr`
+  - `repr_securise` → `NATIVE.safeRepr`
+  - `representation_rapide` → `NATIVE.fastRepr`
+  - `serrer` → `NATIVE.clamp`
+  - `suivant_async` → `NATIVE.anext`
+  - `type_itérateur` → `NATIVE.itype`
+  - `type_profond` → `NATIVE.deeptype`
+  - `typeprofond` → `NATIVE.deeptype`
+  - `volant_inertie` → `NATIVE.flywheel`
+
+---
+
+
 ## [1.0.7] — 2026-03-22
 
 
