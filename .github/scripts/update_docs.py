@@ -1,72 +1,105 @@
+"""
+Script de mise à jour automatique de la documentation Frython.
+Détecte les nouveaux mots-clés dans transpileur.py et met à jour
+DOCUMENTATION.md et UPDATE.md automatiquement.
+Supporte les espaces ET les tabulations dans les dictionnaires.
+"""
+
 import subprocess
 import sys
-import os
 import re
 from datetime import datetime
-TRANSPILEUR = "frython/transpileur.py"
-DOCUMENTATION = "DOCUMENTATION.md"
-UPDATE = "UPDATE.md"
 
+# ── Chemins ────────────────────────────────────────────────────────────────
+TRANSPILEUR   = "frython/transpileur.py"
+DOCUMENTATION = "DOCUMENTATION.md"
+UPDATE        = "UPDATE.md"
+
+NOMS_LISIBLES = {
+    "MOTS_CLES_VERS_PYTHON": "Mots-clés et fonctions",
+    "METHODES_CHAINE":       "Méthodes de chaînes",
+    "METHODES_LISTE":        "Méthodes de listes",
+    "METHODES_DICT":         "Méthodes de dictionnaires",
+    "METHODES_ENSEMBLE":     "Méthodes d'ensembles",
+    "MODULES_TRADUITS":      "Modules traduits",
+}
+
+
+# ── Extraction robuste ─────────────────────────────────────────────────────
 
 def extraire_dictionnaire(contenu, nom_dict):
-    """Extrait toutes les paires clé:valeur d'un dictionnaire Python dans un fichier."""
-    pattern = rf"{nom_dict}\s*=\s*\{{(.*?)\}}"
-    bloc = re.search(pattern, contenu, re.DOTALL)
-    if not bloc:
+    """
+    Extrait toutes les paires clé:valeur d'un dictionnaire Python.
+    Fonctionne avec espaces ET tabulations (mélangés ou non).
+    """
+    pattern = nom_dict + r"\s*=\s*\{"
+    debut = re.search(pattern, contenu)
+    if not debut:
         return {}
-    paires = re.findall(r"'([^']+)'\s*:\s*'([^']+)'", bloc.group(1))
+
+    # Trouver la fermeture du dictionnaire en comptant les accolades
+    pos = debut.end()
+    profondeur = 1
+    while pos < len(contenu) and profondeur > 0:
+        if contenu[pos] == '{':
+            profondeur += 1
+        elif contenu[pos] == '}':
+            profondeur -= 1
+        pos += 1
+
+    bloc = contenu[debut.start():pos]
+
+    # Extraire toutes les paires — supporte ' et " et espaces/tabs
+    paires = re.findall(r"""['"]((?:[^'"\\]|\\.)+)['"]\s*:\s*['"]((?:[^'"\\]|\\.)+)['"]""", bloc)
     return dict(paires)
 
 
 def extraire_tous_les_mots(contenu):
-    """Extrait tous les dictionnaires de traduction du transpileur."""
-    dicts = {
-        "MOTS_CLES_VERS_PYTHON": extraire_dictionnaire(contenu, "MOTS_CLES_VERS_PYTHON"),
-        "METHODES_CHAINE":       extraire_dictionnaire(contenu, "METHODES_CHAINE"),
-        "METHODES_LISTE":        extraire_dictionnaire(contenu, "METHODES_LISTE"),
-        "METHODES_DICT":         extraire_dictionnaire(contenu, "METHODES_DICT"),
-        "METHODES_ENSEMBLE":     extraire_dictionnaire(contenu, "METHODES_ENSEMBLE"),
-        "MODULES_TRADUITS":      extraire_dictionnaire(contenu, "MODULES_TRADUITS"),
-    }
-    return dicts
+    """Extrait tous les dictionnaires de traduction."""
+    return {nom: extraire_dictionnaire(contenu, nom) for nom in NOMS_LISIBLES}
 
+
+# ── Git ────────────────────────────────────────────────────────────────────
 
 def get_contenu_precedent():
-    """Récupère le contenu de transpileur.py au commit précédent via git."""
+    """Récupère le contenu de transpileur.py au commit précédent."""
     try:
         result = subprocess.run(
-            ["git", "show", "HEAD~1:" + TRANSPILEUR],
+            ["git", "show", f"HEAD~1:{TRANSPILEUR}"],
             capture_output=True, text=True
         )
-        if result.returncode == 0:
-            return result.stdout
-        return ""
+        return result.stdout if result.returncode == 0 else ""
     except Exception:
         return ""
 
 
+# ── Détection des nouveaux mots ────────────────────────────────────────────
+
 def trouver_nouveaux_mots(anciens_dicts, nouveaux_dicts):
     """Compare les deux versions et retourne les nouveaux mots par catégorie."""
     nouveautes = {}
-
-    noms_lisibles = {
-        "MOTS_CLES_VERS_PYTHON": "Mots-clés et fonctions",
-        "METHODES_CHAINE":       "Méthodes de chaînes",
-        "METHODES_LISTE":        "Méthodes de listes",
-        "METHODES_DICT":         "Méthodes de dictionnaires",
-        "METHODES_ENSEMBLE":     "Méthodes d'ensembles",
-        "MODULES_TRADUITS":      "Modules traduits",
-    }
-
     for nom_dict, nouveau in nouveaux_dicts.items():
         ancien = anciens_dicts.get(nom_dict, {})
         nouveaux = {k: v for k, v in nouveau.items() if k not in ancien}
         if nouveaux:
-            nom_lisible = noms_lisibles.get(nom_dict, nom_dict)
+            nom_lisible = NOMS_LISIBLES.get(nom_dict, nom_dict)
             nouveautes[nom_lisible] = nouveaux
-
     return nouveautes
 
+
+def trouver_mots_supprimes(anciens_dicts, nouveaux_dicts):
+    """Détecte les mots supprimés."""
+    supprimes = {}
+    for nom_dict, ancien in anciens_dicts.items():
+        nouveau = nouveaux_dicts.get(nom_dict, {})
+        retires = {k: v for k, v in ancien.items() if k not in nouveau}
+        if retires:
+            nom_lisible = NOMS_LISIBLES.get(nom_dict, nom_dict)
+            supprimes[nom_lisible] = retires
+    return supprimes
+
+
+# ── Version ────────────────────────────────────────────────────────────────
 
 def determiner_version():
     """Lit la version actuelle dans UPDATE.md et incrémente le patch."""
@@ -83,16 +116,28 @@ def determiner_version():
         return "1.0.1"
 
 
-def mettre_a_jour_update_md(nouveautes, version):
+# ── Mise à jour de UPDATE.md ───────────────────────────────────────────────
+
+def mettre_a_jour_update_md(nouveautes, supprimes, version):
     """Ajoute une nouvelle section dans UPDATE.md."""
     date = datetime.now().strftime("%Y-%m-%d")
 
-    lignes = [f"## [{version}] — {date}\n\n### Ajouté\n"]
+    lignes = [f"## [{version}] — {date}\n"]
 
-    for categorie, mots in nouveautes.items():
-        lignes.append(f"- **{categorie}** — {len(mots)} nouveau(x) mot(s):")
-        for fr, py in mots.items():
-            lignes.append(f"  - `{fr}` → `{py}`")
+    if nouveautes:
+        lignes.append("\n### Ajouté\n")
+        for categorie, mots in nouveautes.items():
+            lignes.append(f"- **{categorie}** — {len(mots)} nouveau(x):")
+            for fr, py in sorted(mots.items()):
+                lignes.append(f"  - `{fr}` → `{py}`")
+        lignes.append("")
+
+    if supprimes:
+        lignes.append("\n### Supprimé\n")
+        for categorie, mots in supprimes.items():
+            lignes.append(f"- **{categorie}** — {len(mots)} supprimé(s):")
+            for fr, py in sorted(mots.items()):
+                lignes.append(f"  - `{fr}` (était `{py}`)")
         lignes.append("")
 
     nouvelle_section = "\n".join(lignes) + "\n---\n\n"
@@ -103,6 +148,7 @@ def mettre_a_jour_update_md(nouveautes, version):
     except FileNotFoundError:
         contenu = "# 📝 Historique des mises à jour — Frython\n\n---\n\n"
 
+    # Insérer après le premier "---"
     insertion = contenu.find("---\n")
     if insertion != -1:
         contenu = contenu[:insertion + 4] + "\n" + nouvelle_section + contenu[insertion + 4:]
@@ -112,61 +158,69 @@ def mettre_a_jour_update_md(nouveautes, version):
     with open(UPDATE, "w", encoding="utf-8") as f:
         f.write(contenu)
 
-    print(f"✅ UPDATE.md mis à jour avec la version {version}")
+    print(f"✅ UPDATE.md mis à jour — version {version}")
 
 
-def generer_tableau_mots_cles(dicts):
-    """Génère les tableaux markdown pour la documentation."""
-    
-    sections = {
-        "MOTS_CLES_VERS_PYTHON": ("### Mots-clés et fonctions intégrées", "Frython", "Python", "Description"),
-        "METHODES_CHAINE":       ("### Méthodes de chaînes", "Frython", "Python", "Description"),
-        "METHODES_LISTE":        ("### Méthodes de listes", "Frython", "Python", "Description"),
-        "METHODES_DICT":         ("### Méthodes de dictionnaires", "Frython", "Python", "Description"),
-        "METHODES_ENSEMBLE":     ("### Méthodes d'ensembles", "Frython", "Python", "Description"),
-        "MODULES_TRADUITS":      ("### Modules traduits", "Frython", "Python", "Description"),
-    }
+# ── Mise à jour de DOCUMENTATION.md ───────────────────────────────────────
+
+def generer_tableaux(dicts):
+    """Génère les tableaux markdown complets pour tous les dictionnaires."""
+    sections = [
+        ("MOTS_CLES_VERS_PYTHON", "### Mots-clés et fonctions intégrées"),
+        ("METHODES_CHAINE",       "### Méthodes de chaînes"),
+        ("METHODES_LISTE",        "### Méthodes de listes"),
+        ("METHODES_DICT",         "### Méthodes de dictionnaires"),
+        ("METHODES_ENSEMBLE",     "### Méthodes d'ensembles"),
+        ("MODULES_TRADUITS",      "### Modules traduits"),
+    ]
 
     lignes = []
-    for nom_dict, (titre, col1, col2, col3) in sections.items():
+    for nom_dict, titre in sections:
         d = dicts.get(nom_dict, {})
         if not d:
             continue
+        # Dédupliquer (garder uniquement la première occurrence de chaque clé)
+        d_unique = {}
+        for k, v in d.items():
+            if k not in d_unique:
+                d_unique[k] = v
+
         lignes.append(f"\n{titre}\n")
-        lignes.append(f"| {col1} | {col2} |")
-        lignes.append("|--------|--------|")
-        for fr, py in sorted(d.items()):
+        lignes.append("| Frython | Python |")
+        lignes.append("|---------|--------|")
+        for fr, py in sorted(d_unique.items()):
             lignes.append(f"| `{fr}` | `{py}` |")
         lignes.append("")
 
     return "\n".join(lignes)
 
 
-def mettre_a_jour_documentation_md(nouveaux_dicts, nouveautes):
+def mettre_a_jour_documentation_md(nouveaux_dicts):
     """Met à jour la section des mots-clés dans DOCUMENTATION.md."""
     try:
         with open(DOCUMENTATION, "r", encoding="utf-8") as f:
             contenu = f.read()
     except FileNotFoundError:
-        print("⚠️  DOCUMENTATION.md introuvable, création d'un nouveau fichier.")
-        contenu = "# 📚 Documentation Frython\n\n## Référence complète\n\n<!-- MOTS_CLES_START -->\n<!-- MOTS_CLES_END -->\n"
+        print("⚠️  DOCUMENTATION.md introuvable.")
+        return
 
-    nouveau_tableau = generer_tableau_mots_cles(nouveaux_dicts)
+    nouveau_tableau = generer_tableaux(nouveaux_dicts)
 
     debut = "<!-- MOTS_CLES_START -->"
-    fin = "<!-- MOTS_CLES_END -->"
+    fin   = "<!-- MOTS_CLES_END -->"
 
     if debut in contenu and fin in contenu:
         avant = contenu[:contenu.index(debut) + len(debut)]
         apres = contenu[contenu.index(fin):]
         contenu = avant + "\n" + nouveau_tableau + "\n" + apres
     else:
-
+        print("⚠️  Balises <!-- MOTS_CLES_START --> / <!-- MOTS_CLES_END --> introuvables dans DOCUMENTATION.md")
         contenu += f"\n\n{debut}\n{nouveau_tableau}\n{fin}\n"
 
+    # Mettre à jour la date
     date = datetime.now().strftime("%Y-%m-%d")
     contenu = re.sub(
-        r"_Documentation générée pour Frython v[\d\.]+ — .*_",
+        r"_Documentation.*?mise à jour.*?_",
         f"_Documentation mise à jour le {date} — 🐓 Python en français, sacré bleu !_",
         contenu
     )
@@ -174,31 +228,44 @@ def mettre_a_jour_documentation_md(nouveaux_dicts, nouveautes):
     with open(DOCUMENTATION, "w", encoding="utf-8") as f:
         f.write(contenu)
 
-    print(f"✅ DOCUMENTATION.md mis à jour")
+    print("✅ DOCUMENTATION.md mis à jour")
 
-def afficher_resume(nouveautes):
-    """Affiche un résumé des changements détectés."""
-    print("\n" + "=" * 50)
-    print("🐓 FRYTHON — Détection de nouveaux mots-clés")
-    print("=" * 50)
 
-    if not nouveautes:
-        print("✅ Aucun nouveau mot-clé détecté.")
-        print("=" * 50 + "\n")
+# ── Résumé console ─────────────────────────────────────────────────────────
+
+def afficher_resume(nouveautes, supprimes):
+    print("\n" + "=" * 55)
+    print("🐓 FRYTHON — Détection des changements de mots-clés")
+    print("=" * 55)
+
+    if not nouveautes and not supprimes:
+        print("✅ Aucun changement détecté.")
+        print("=" * 55 + "\n")
         return
 
-    total = sum(len(m) for m in nouveautes.values())
-    print(f"🆕 {total} nouveau(x) mot(s) détecté(s) !\n")
+    if nouveautes:
+        total = sum(len(m) for m in nouveautes.values())
+        print(f"\n🆕 {total} nouveau(x) mot(s):\n")
+        for categorie, mots in nouveautes.items():
+            print(f"  📂 {categorie} ({len(mots)}):")
+            for fr, py in sorted(mots.items()):
+                print(f"     '{fr}' → '{py}'")
 
-    for categorie, mots in nouveautes.items():
-        print(f"  📂 {categorie} ({len(mots)}):")
-        for fr, py in mots.items():
-            print(f"     '{fr}' → '{py}'")
-        print()
+    if supprimes:
+        total = sum(len(m) for m in supprimes.values())
+        print(f"\n🗑️  {total} mot(s) supprimé(s):\n")
+        for categorie, mots in supprimes.items():
+            print(f"  📂 {categorie} ({len(mots)}):")
+            for fr, py in sorted(mots.items()):
+                print(f"     '{fr}' (était '{py}')")
 
-    print("=" * 50 + "\n")
+    print("\n" + "=" * 55 + "\n")
+
+
+# ── Point d'entrée ─────────────────────────────────────────────────────────
 
 def main():
+    # Lire la version actuelle
     try:
         with open(TRANSPILEUR, "r", encoding="utf-8") as f:
             contenu_actuel = f.read()
@@ -206,25 +273,32 @@ def main():
         print(f"❌ Impossible de lire {TRANSPILEUR}")
         sys.exit(1)
 
+    # Lire la version précédente
     contenu_precedent = get_contenu_precedent()
 
+    # Extraire les mots-clés
     nouveaux_dicts = extraire_tous_les_mots(contenu_actuel)
-    anciens_dicts = extraire_tous_les_mots(contenu_precedent) if contenu_precedent else {}
+    anciens_dicts  = extraire_tous_les_mots(contenu_precedent) if contenu_precedent else {}
 
+    # Trouver les différences
     nouveautes = trouver_nouveaux_mots(anciens_dicts, nouveaux_dicts)
+    supprimes  = trouver_mots_supprimes(anciens_dicts, nouveaux_dicts)
 
-    afficher_resume(nouveautes)
+    # Afficher le résumé
+    afficher_resume(nouveautes, supprimes)
 
-    if nouveautes:
+    # Mettre à jour les docs
+    if nouveautes or supprimes:
         version = determiner_version()
-        mettre_a_jour_update_md(nouveautes, version)
-        mettre_a_jour_documentation_md(nouveaux_dicts, nouveautes)
+        mettre_a_jour_update_md(nouveautes, supprimes, version)
+        mettre_a_jour_documentation_md(nouveaux_dicts)
         print(f"📦 Version documentée: {version}")
     else:
-        mettre_a_jour_documentation_md(nouveaux_dicts, {})
-        print("📄 Tableaux DOCUMENTATION.md rafraîchis.")
+        # Rafraîchir quand même les tableaux complets
+        mettre_a_jour_documentation_md(nouveaux_dicts)
+        print("📄 Tableaux DOCUMENTATION.md rafraîchis sans changement de version.")
 
-    print("✅ Terminé!")
+    print("✅ Terminé!\n")
 
 
 if __name__ == "__main__":
