@@ -402,352 +402,375 @@ déf calcul_lent():
 
 <!-- MOTS_CLES_START -->
 
-## 5. Mots-clés
+### Mots-clés et fonctions intégrées
 
-### Contrôle de flux
+| Frython | Python |
+|---------|--------|
+| `Avertissement` | `Warning` |
+| `AvertissementDepreciation` | `DeprecationWarning` |
+| `AvertissementFutur` | `FutureWarning` |
+| `AvertissementRuntime` | `RuntimeWarning` |
+| `AvertissementSyntaxe` | `SyntaxWarning` |
+| `AvertissementUtilisateur` | `UserWarning` |
+| `Ellipsis` | `Ellipsis` |
+| `ErreurArret` | `StopIteration` |
+| `ErreurAssertion` | `AssertionError` |
+| `ErreurAttribut` | `AttributeError` |
+| `ErreurCle` | `KeyError` |
+| `ErreurConnexion` | `ConnectionError` |
+| `ErreurDebordement` | `OverflowError` |
+| `ErreurDivisionZero` | `ZeroDivisionError` |
+| `ErreurES` | `IOError` |
+| `ErreurFichier` | `FileNotFoundError` |
+| `ErreurImport` | `ImportError` |
+| `ErreurIndentation` | `IndentationError` |
+| `ErreurIndex` | `IndexError` |
+| `ErreurInterruption` | `KeyboardInterrupt` |
+| `ErreurMemoire` | `MemoryError` |
+| `ErreurNom` | `NameError` |
+| `ErreurNotImplemented` | `NotImplementedError` |
+| `ErreurOS` | `OSError` |
+| `ErreurPermission` | `PermissionError` |
+| `ErreurRecursion` | `RecursionError` |
+| `ErreurRuntime` | `RuntimeError` |
+| `ErreurSyntaxe` | `SyntaxError` |
+| `ErreurSysteme` | `SystemError` |
+| `ErreurTabulation` | `TabError` |
+| `ErreurTimeout` | `TimeoutError` |
+| `ErreurType` | `TypeError` |
+| `ErreurUnicode` | `UnicodeError` |
+| `ErreurValeur` | `ValueError` |
+| `Faux` | `False` |
+| `NotImplemented` | `NotImplemented` |
+| `Rien` | `None` |
+| `Vrai` | `True` |
+| `absolu` | `abs` |
+| `afficher` | `print` |
+| `affirmer` | `assert` |
+| `aide` | `help` |
+| `appeler` | `callable` |
+| `arrondir` | `round` |
+| `asynchrone` | `async` |
+| `attendre` | `await` |
+| `aucun` | `any` |
+| `avec` | `with` |
+| `binaire` | `bin` |
+| `booleen` | `bool` |
+| `breakpoint` | `breakpoint` |
+| `caractere` | `chr` |
+| `casser` | `break` |
+| `chaine` | `str` |
+| `classe` | `class` |
+| `classique` | `classmethod` |
+| `comme` | `as` |
+| `complexe` | `complex` |
+| `continuer` | `continue` |
+| `dans` | `in` |
+| `de` | `from` |
+| `decimal` | `float` |
+| `dictionnaire` | `dict` |
+| `divmod` | `divmod` |
+| `déf` | `def` |
+| `enfin` | `finally` |
+| `ensemble` | `set` |
+| `entier` | `int` |
+| `entier_long` | `int` |
+| `entree` | `input` |
+| `entree_standard` | `stdin` |
+| `enumerer` | `enumerate` |
+| `essayer` | `try` |
+| `est` | `is` |
+| `et` | `and` |
+| `evaluer` | `eval` |
+| `executer` | `exec` |
+| `executer_fichier` | `execfile` |
+| `fermer` | `close` |
+| `fige` | `frozenset` |
+| `filtrer` | `filter` |
+| `formater_chaine` | `format` |
+| `global` | `global` |
+| `globals` | `globals` |
+| `hash` | `hash` |
+| `hex` | `hex` |
+| `identifiant` | `id` |
+| `importer` | `import` |
+| `imprimer` | `print` |
+| `instance_de` | `isinstance` |
+| `intervalle` | `range` |
+| `inverser` | `reversed` |
+| `iter` | `iter` |
+| `lambda` | `lambda` |
+| `lever` | `raise` |
+| `liste` | `list` |
+| `locals` | `locals` |
+| `longueur` | `len` |
+| `longueur_max` | `max` |
+| `longueur_min` | `min` |
+| `mapper` | `map` |
+| `maximum` | `max` |
+| `minimum` | `min` |
+| `non` | `not` |
+| `nonlocal` | `nonlocal` |
+| `objet` | `object` |
+| `octal` | `oct` |
+| `octets` | `bytes` |
+| `ordinal` | `ord` |
+| `ou` | `or` |
+| `ouvrir` | `open` |
+| `pasdans` | `not in` |
+| `passer` | `pass` |
+| `pour` | `for` |
+| `prochain` | `next` |
+| `propriete` | `property` |
+| `puissance` | `pow` |
+| `rendement` | `yield` |
+| `repr` | `repr` |
+| `retourner` | `return` |
+| `saisir` | `input` |
+| `sauf` | `except` |
+| `si` | `if` |
+| `sinon` | `else` |
+| `sinonsi` | `elif` |
+| `soi` | `self` |
+| `somme` | `sum` |
+| `sortie_standard` | `stdout` |
+| `sous_classe` | `issubclass` |
+| `statique` | `staticmethod` |
+| `super` | `super` |
+| `supprimer` | `del` |
+| `tableau` | `bytearray` |
+| `taille` | `sizeof` |
+| `tantque` | `while` |
+| `tous` | `all` |
+| `toutca` | `any` |
+| `tranche` | `slice` |
+| `trier` | `sorted` |
+| `tuple` | `tuple` |
+| `type` | `type` |
+| `type_base` | `type` |
+| `vrai_faux` | `bool` |
+| `zipper` | `zip` |
 
-| Frython | Python | Exemple |
-|---------|--------|---------|
-| `si` | `if` | `si x > 0:` |
-| `sinon` | `else` | `sinon:` |
-| `sinonsi` | `elif` | `sinonsi x == 0:` |
-| `tantque` | `while` | `tantque Vrai:` |
-| `pour` | `for` | `pour i dans liste:` |
-| `dans` | `in` | `pour x dans items:` |
-| `pasdans` | `not in` | `si x pasdans liste:` |
-| `casser` | `break` | `casser` |
-| `continuer` | `continue` | `continuer` |
-| `passer` | `pass` | `passer` |
-
-### Définitions
-
-| Frython | Python | Exemple |
-|---------|--------|---------|
-| `déf` | `def` | `déf ma_fonction():` |
-| `retourner` | `return` | `retourner valeur` |
-| `classe` | `class` | `classe MaClasse:` |
-| `soi` | `self` | `soi.attribut` |
-| `lambda` | `lambda` | `lambda x: x*2` |
-| `rendement` | `yield` | `rendement valeur` |
-| `asynchrone` | `async` | `asynchrone déf f():` |
-| `attendre` | `await` | `attendre coroutine()` |
-
-### Valeurs spéciales
-
-| Frython | Python | Valeur |
-|---------|--------|--------|
-| `Vrai` | `True` | Booléen vrai |
-| `Faux` | `False` | Booléen faux |
-| `Rien` | `None` | Valeur nulle |
-
-### Opérateurs logiques
-
-| Frython | Python | Exemple |
-|---------|--------|---------|
-| `et` | `and` | `si a > 0 et b > 0:` |
-| `ou` | `or` | `si a == 0 ou b == 0:` |
-| `non` | `not` | `si non liste:` |
-| `est` | `is` | `si x est Rien:` |
-
-### Import
-
-| Frython | Python | Exemple |
-|---------|--------|---------|
-| `importer` | `import` | `importer random` |
-| `de` | `from` | `de math importer sqrt` |
-| `comme` | `as` | `importer numpy comme np` |
-
-### Exceptions
-
-| Frython | Python | Exemple |
-|---------|--------|---------|
-| `essayer` | `try` | `essayer:` |
-| `sauf` | `except` | `sauf ValueError:` |
-| `enfin` | `finally` | `enfin:` |
-| `lever` | `raise` | `lever ValueError("msg")` |
-| `affirmer` | `assert` | `affirmer x > 0` |
-
-### Divers
-
-| Frython | Python | Exemple |
-|---------|--------|---------|
-| `avec` | `with` | `avec ouvrir("f") comme f:` |
-| `global` | `global` | `global ma_var` |
-| `nonlocal` | `nonlocal` | `nonlocal compteur` |
-| `supprimer` | `del` | `supprimer ma_liste[0]` |
-
----
-
-## 6. Fonctions intégrées
-
-### Entrée/Sortie
-
-| Frython | Python | Description |
-|---------|--------|-------------|
-| `afficher()` | `print()` | Affiche du texte |
-| `saisir()` | `input()` | Lit une entrée utilisateur |
-
-### Conversion de types
-
-| Frython | Python | Description |
-|---------|--------|-------------|
-| `entier()` | `int()` | Convertit en entier |
-| `decimal()` | `float()` | Convertit en décimal |
-| `chaine()` | `str()` | Convertit en chaîne |
-| `booleen()` | `bool()` | Convertit en booléen |
-| `liste()` | `list()` | Convertit en liste |
-| `tuple()` | `tuple()` | Convertit en tuple |
-| `ensemble()` | `set()` | Convertit en ensemble |
-| `dictionnaire()` | `dict()` | Crée un dictionnaire |
-| `octets()` | `bytes()` | Convertit en octets |
-| `complexe()` | `complex()` | Crée un nombre complexe |
-
-### Itération
-
-| Frython | Python | Description |
-|---------|--------|-------------|
-| `intervalle()` | `range()` | Génère une suite |
-| `enumerer()` | `enumerate()` | Énumère avec indices |
-| `zipper()` | `zip()` | Combine des itérables |
-| `mapper()` | `map()` | Applique une fonction |
-| `filtrer()` | `filter()` | Filtre des éléments |
-| `inverser()` | `reversed()` | Inverse un itérable |
-| `trier()` | `sorted()` | Trie un itérable |
-
-### Mathématiques
-
-| Frython | Python | Description |
-|---------|--------|-------------|
-| `somme()` | `sum()` | Somme des éléments |
-| `maximum()` | `max()` | Valeur maximale |
-| `minimum()` | `min()` | Valeur minimale |
-| `absolu()` | `abs()` | Valeur absolue |
-| `arrondir()` | `round()` | Arrondit un nombre |
-| `puissance()` | `pow()` | Puissance |
-
-### Introspection
-
-| Frython | Python | Description |
-|---------|--------|-------------|
-| `type()` | `type()` | Type d'un objet |
-| `longueur()` | `len()` | Longueur |
-| `identifiant()` | `id()` | Identifiant unique |
-| `repr()` | `repr()` | Représentation |
-| `aide()` | `help()` | Aide |
-| `sous_classe()` | `issubclass()` | Test sous-classe |
-| `instance_de()` | `isinstance()` | Test instance |
-| `appeler()` | `callable()` | Test callable |
-
-### Fichiers
-
-| Frython | Python | Description |
-|---------|--------|-------------|
-| `ouvrir()` | `open()` | Ouvre un fichier |
-| `fermer()` | `close()` | Ferme un fichier |
-
----
-
-## 7. Méthodes
 
 ### Méthodes de chaînes
 
-| Frython | Python | Description |
-|---------|--------|-------------|
-| `.majuscule()` | `.upper()` | Met en majuscules |
-| `.minuscule()` | `.lower()` | Met en minuscules |
-| `.capitaliser()` | `.capitalize()` | Première lettre majuscule |
-| `.titrer()` | `.title()` | Format titre |
-| `.remplacer(a, b)` | `.replace(a, b)` | Remplace a par b |
-| `.diviser()` | `.split()` | Divise en liste |
-| `.diviser_droite()` | `.rsplit()` | Divise depuis la droite |
-| `.diviser_lignes()` | `.splitlines()` | Divise par lignes |
-| `.joindre(lst)` | `.join(lst)` | Joint une liste |
-| `.supprimer_espaces()` | `.strip()` | Supprime les espaces |
-| `.supprimer_espaces_gauche()` | `.lstrip()` | Supprime à gauche |
-| `.supprimer_espaces_droite()` | `.rstrip()` | Supprime à droite |
-| `.commencer_par()` | `.startswith()` | Commence par |
-| `.finir_par()` | `.endswith()` | Finit par |
-| `.trouver()` | `.find()` | Trouve une sous-chaîne |
-| `.indice()` | `.index()` | Index d'une sous-chaîne |
-| `.compter()` | `.count()` | Compte les occurrences |
-| `.formater()` | `.format()` | Formate la chaîne |
-| `.encoder()` | `.encode()` | Encode en bytes |
-| `.est_alpha()` | `.isalpha()` | Test alphabétique |
-| `.est_digit()` | `.isdigit()` | Test numérique |
-| `.est_alphanum()` | `.isalnum()` | Test alphanumérique |
-| `.est_espace()` | `.isspace()` | Test espace |
-| `.est_majuscule()` | `.isupper()` | Test majuscule |
-| `.est_minuscule()` | `.islower()` | Test minuscule |
-| `.est_titre()` | `.istitle()` | Test titre |
-| `.est_ascii()` | `.isascii()` | Test ASCII |
-| `.centrer()` | `.center()` | Centre le texte |
-| `.aligner_gauche()` | `.ljust()` | Aligne à gauche |
-| `.aligner_droite()` | `.rjust()` | Aligne à droite |
-| `.remplir_zeros()` | `.zfill()` | Remplit avec des zéros |
-| `.partitionner()` | `.partition()` | Partitionne |
-| `.supprimer_prefixe()` | `.removeprefix()` | Supprime le préfixe |
-| `.supprimer_suffixe()` | `.removesuffix()` | Supprime le suffixe |
-| `.traduire()` | `.translate()` | Traduit les caractères |
+| Frython | Python |
+|---------|--------|
+| `aligner_droite` | `rjust` |
+| `aligner_gauche` | `ljust` |
+| `capitaliser` | `capitalize` |
+| `centrer` | `center` |
+| `commencer_par` | `startswith` |
+| `compter` | `count` |
+| `compter_depuis` | `count` |
+| `contient` | `__contains__` |
+| `decoder` | `decode` |
+| `diviser` | `split` |
+| `diviser_droite` | `rsplit` |
+| `diviser_lignes` | `splitlines` |
+| `encoder` | `encode` |
+| `est_alpha` | `isalpha` |
+| `est_alphanum` | `isalnum` |
+| `est_ascii` | `isascii` |
+| `est_decimal` | `isdecimal` |
+| `est_digit` | `isdigit` |
+| `est_espace` | `isspace` |
+| `est_identifiant` | `isidentifier` |
+| `est_imprimable` | `isprintable` |
+| `est_majuscule` | `isupper` |
+| `est_minuscule` | `islower` |
+| `est_numerique` | `isnumeric` |
+| `est_titre` | `istitle` |
+| `expandre_tabs` | `expandtabs` |
+| `finir_par` | `endswith` |
+| `formater` | `format` |
+| `formater_map` | `format_map` |
+| `indice` | `index` |
+| `joindre` | `join` |
+| `majuscule` | `upper` |
+| `maketrans` | `maketrans` |
+| `minuscule` | `lower` |
+| `partitionner` | `partition` |
+| `remplacer` | `replace` |
+| `remplir_zeros` | `zfill` |
+| `rfind` | `rfind` |
+| `rindex` | `rindex` |
+| `rpartitionner` | `rpartition` |
+| `supprimer_espaces` | `strip` |
+| `supprimer_espaces_droite` | `rstrip` |
+| `supprimer_espaces_gauche` | `lstrip` |
+| `supprimer_prefixe` | `removeprefix` |
+| `supprimer_suffixe` | `removesuffix` |
+| `titrer` | `title` |
+| `traduire` | `translate` |
+| `trouver` | `find` |
+
 
 ### Méthodes de listes
 
-| Frython | Python | Description |
-|---------|--------|-------------|
-| `.ajouter(x)` | `.append(x)` | Ajoute un élément |
-| `.inserer(i, x)` | `.insert(i, x)` | Insère à l'indice i |
-| `.etendre(lst)` | `.extend(lst)` | Étend avec une liste |
-| `.retirer(x)` | `.remove(x)` | Retire la première occurrence |
-| `.extraire(i)` | `.pop(i)` | Extrait l'élément i |
-| `.vider()` | `.clear()` | Vide la liste |
-| `.trier()` | `.sort()` | Trie sur place |
-| `.inverser()` | `.reverse()` | Inverse sur place |
-| `.copier()` | `.copy()` | Copie superficielle |
-| `.compter(x)` | `.count(x)` | Compte les occurrences |
-| `.indice(x)` | `.index(x)` | Trouve l'indice |
+| Frython | Python |
+|---------|--------|
+| `ajouter` | `append` |
+| `annexer` | `append` |
+| `compter` | `count` |
+| `concatener` | `extend` |
+| `copie_profonde` | `copy` |
+| `copier` | `copy` |
+| `dernier` | `pop` |
+| `effacer` | `clear` |
+| `etendre` | `extend` |
+| `existe` | `__contains__` |
+| `extraire` | `pop` |
+| `indice` | `index` |
+| `inserer` | `insert` |
+| `inserer_debut` | `insert` |
+| `inverser` | `reverse` |
+| `longueur` | `__len__` |
+| `multiplier` | `__mul__` |
+| `premier` | `pop` |
+| `retirer` | `remove` |
+| `supprimer` | `remove` |
+| `trier` | `sort` |
+| `vider` | `clear` |
+
 
 ### Méthodes de dictionnaires
 
-| Frython | Python | Description |
-|---------|--------|-------------|
-| `.cles()` | `.keys()` | Retourne les clés |
-| `.valeurs()` | `.values()` | Retourne les valeurs |
-| `.elements()` | `.items()` | Retourne les paires |
-| `.obtenir(k, d)` | `.get(k, d)` | Obtient avec défaut |
-| `.mettre_a_jour(d)` | `.update(d)` | Met à jour |
-| `.extraire(k)` | `.pop(k)` | Extrait une clé |
-| `.extraire_dernier()` | `.popitem()` | Extrait le dernier |
-| `.vider()` | `.clear()` | Vide le dictionnaire |
-| `.copier()` | `.copy()` | Copie |
-| `.depuis_cles(keys)` | `.fromkeys(keys)` | Crée depuis des clés |
-| `.obtenir_ou_creer(k, d)` | `.setdefault(k, d)` | Obtient ou crée |
+| Frython | Python |
+|---------|--------|
+| `cles` | `keys` |
+| `contient` | `__contains__` |
+| `contient_cle` | `__contains__` |
+| `copier` | `copy` |
+| `depuis_cles` | `fromkeys` |
+| `effacer` | `clear` |
+| `elements` | `items` |
+| `extraire` | `pop` |
+| `extraire_defaut` | `setdefault` |
+| `extraire_dernier` | `popitem` |
+| `fusionner` | `update` |
+| `inverser` | `items` |
+| `longueur` | `__len__` |
+| `mettre_a_jour` | `update` |
+| `obtenir` | `get` |
+| `obtenir_ou_creer` | `setdefault` |
+| `valeurs` | `values` |
+| `vider` | `clear` |
+
 
 ### Méthodes d'ensembles
 
-| Frython | Python | Description |
-|---------|--------|-------------|
-| `.ajouter(x)` | `.add(x)` | Ajoute un élément |
-| `.retirer(x)` | `.remove(x)` | Retire (erreur si absent) |
-| `.ecarter(x)` | `.discard(x)` | Retire sans erreur |
-| `.vider()` | `.clear()` | Vide l'ensemble |
-| `.copier()` | `.copy()` | Copie |
-| `.union(s)` | `.union(s)` | Union |
-| `.intersection(s)` | `.intersection(s)` | Intersection |
-| `.difference(s)` | `.difference(s)` | Différence |
-| `.est_sous_ensemble(s)` | `.issubset(s)` | Test sous-ensemble |
-| `.est_sur_ensemble(s)` | `.issuperset(s)` | Test sur-ensemble |
-| `.est_disjoint(s)` | `.isdisjoint(s)` | Test disjonction |
-| `.difference_symetrique(s)` | `.symmetric_difference(s)` | Différence symétrique |
+| Frython | Python |
+|---------|--------|
+| `ajouter` | `add` |
+| `copier` | `copy` |
+| `diff_sym_sur_place` | `symmetric_difference_update` |
+| `difference` | `difference` |
+| `difference_sur_place` | `difference_update` |
+| `difference_symetrique` | `symmetric_difference` |
+| `ecarter` | `discard` |
+| `est_disjoint` | `isdisjoint` |
+| `est_sous_ensemble` | `issubset` |
+| `est_sur_ensemble` | `issuperset` |
+| `est_vide` | `__len__` |
+| `extraire_aleatoire` | `pop` |
+| `geler` | `frozenset` |
+| `intersection` | `intersection` |
+| `intersection_sur_place` | `intersection_update` |
+| `mettre_a_jour` | `update` |
+| `retirer` | `remove` |
+| `supprimer_si_existe` | `discard` |
+| `union` | `union` |
+| `union_sur_place` | `update` |
+| `vider` | `clear` |
 
----
 
-## 8. Modules traduits
+### Modules traduits
 
-```python
-# Mathématiques
-importer mathématiques
-mathématiques.sqrt(16)  # → math.sqrt(16)
-
-# Aléatoire
-importer aleatoire
-aleatoire.randint(1, 10)
-
-# Système
-importer systeme
-systeme.argv
-
-# OS
-importer systeme_exploitation
-
-# Temps
-importer temps
-temps.time()
-
-# Datetime
-importer date
-
-# JSON
-importer json
-
-# Collections
-importer collections
-
-# Itertools
-importer iterateurs
-
-# Functools
-importer fonctionnel
-
-# Pathlib
-importer chemin_fichier
-
-# Threading
-importer fil
-
-# Multiprocessing
-importer multiprocessus
-
-# Subprocess
-importer sous_processus
-
-# SQLite
-importer base_donnees
-
-# CSV
-importer csv
-
-# Statistics
-importer statistiques
-
-# Logging
-importer journalisation
-
-# Argparse
-importer arguments
-
-# Typing
-importer types_donnees
-
-# Dataclasses
-importer dataclasse
-
-# Enum
-importer enum
-
-# UUID
-importer uuid
-
-# Secrets
-importer secret
-
-# Hashlib
-importer hachage
-
-# Base64
-importer encodage
-
-# Requests (externe)
-importer web
-
-# NumPy (externe)
-importer calcul
-
-# Pandas (externe)
-importer donnees
-
-# Matplotlib (externe)
-importer graphiques
-
-# PIL (externe)
-importer images
-
-# Tkinter
-importer interface
-
-# Asyncio
-importer async_io
-```
-
----
+| Frython | Python |
+|---------|--------|
+| `abstrait` | `abc` |
+| `aleatoire` | `random` |
+| `archive` | `tarfile` |
+| `argparse` | `argparse` |
+| `arguments` | `argparse` |
+| `async_io` | `asyncio` |
+| `base64` | `base64` |
+| `base_donnees` | `sqlite3` |
+| `binaire_io` | `io` |
+| `calcul` | `numpy` |
+| `chemin` | `os.path` |
+| `chemin_fichier` | `pathlib` |
+| `chiffrement` | `cryptography` |
+| `collections` | `collections` |
+| `compression` | `zipfile` |
+| `configparser` | `configparser` |
+| `configuration` | `configparser` |
+| `contextlib` | `contextlib` |
+| `copie` | `copy` |
+| `copie_profonde` | `deepcopy` |
+| `csv` | `csv` |
+| `dataclasse` | `dataclasses` |
+| `date` | `datetime` |
+| `datetime` | `datetime` |
+| `decimal_module` | `decimal` |
+| `donnees` | `pandas` |
+| `email` | `email` |
+| `encodage` | `base64` |
+| `entree_sortie` | `io` |
+| `enum` | `enum` |
+| `environnement` | `dotenv` |
+| `expression_reguliere` | `re` |
+| `fil` | `threading` |
+| `fonctionnel` | `functools` |
+| `fractions` | `fractions` |
+| `functools` | `functools` |
+| `garbage` | `gc` |
+| `graphiques` | `matplotlib` |
+| `hachage` | `hashlib` |
+| `hashlib` | `hashlib` |
+| `html` | `html` |
+| `http` | `http` |
+| `images` | `PIL` |
+| `inspection` | `inspect` |
+| `interface` | `tkinter` |
+| `io` | `io` |
+| `iterateurs` | `itertools` |
+| `itertools` | `itertools` |
+| `journalisation` | `logging` |
+| `json` | `json` |
+| `logging` | `logging` |
+| `mathematiques` | `math` |
+| `mathématiques` | `math` |
+| `multiprocessing` | `multiprocessing` |
+| `multiprocessus` | `multiprocessing` |
+| `pathlib` | `pathlib` |
+| `plateforme` | `platform` |
+| `re` | `re` |
+| `reseau` | `urllib` |
+| `secret` | `secrets` |
+| `signal` | `signal` |
+| `socket` | `socket` |
+| `sous_processus` | `subprocess` |
+| `sqlite3` | `sqlite3` |
+| `statistiques` | `statistics` |
+| `struct` | `struct` |
+| `subprocess` | `subprocess` |
+| `systeme` | `sys` |
+| `systeme_exploitation` | `os` |
+| `temps` | `time` |
+| `test_rapide` | `pytest` |
+| `tests` | `unittest` |
+| `threading` | `threading` |
+| `traceback` | `traceback` |
+| `types_donnees` | `typing` |
+| `unittest` | `unittest` |
+| `urllib` | `urllib` |
+| `uuid` | `uuid` |
+| `warnings` | `warnings` |
+| `weakref` | `weakref` |
+| `web` | `requests` |
+| `xml` | `xml` |
 
 <!-- MOTS_CLES_END -->
 

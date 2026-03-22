@@ -4,6 +4,17 @@
 
 ---
 
+## [1.0.3] — 2026-03-22
+
+
+### Supprimé
+
+- **Méthodes de dictionnaires** — 1 supprimé(s):
+  - `supprimer` (était `__delitem__`)
+
+---
+
+
 ## [1.0.2] — 2026-03-20
 
 ### Ajouté
