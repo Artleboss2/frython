@@ -273,10 +273,10 @@ def afficher_resume(nouveautes, supprimes):
     print("\n" + "=" * 55 + "\n")
 
 
-# ── Mise à jour de la version dans setup.py et pyproject.toml ──────────────
+# ── Mise à jour de la version dans tous les fichiers ──────────────────────
 
 def mettre_a_jour_version_fichiers(version):
-    """Met à jour la version dans setup.py et pyproject.toml."""
+    """Met à jour la version dans setup.py, pyproject.toml, __init__.py et README.md."""
 
     # setup.py
     try:
@@ -310,6 +310,21 @@ def mettre_a_jour_version_fichiers(version):
         print(f"✅ frython/__init__.py → version {version}")
     except FileNotFoundError:
         print("⚠️  frython/__init__.py introuvable")
+
+    # README.md
+    try:
+        with open("README.md", "r", encoding="utf-8") as f:
+            contenu = f.read()
+        contenu = re.sub(
+            r"!\[Version\]\(https://img\.shields\.io/badge/Version-[\d\.]+-orange",
+            f"![Version](https://img.shields.io/badge/Version-{version}-orange",
+            contenu
+        )
+        with open("README.md", "w", encoding="utf-8") as f:
+            f.write(contenu)
+        print(f"✅ README.md → version {version}")
+    except FileNotFoundError:
+        print("⚠️  README.md introuvable")
 
 
 # ── Point d'entrée ─────────────────────────────────────────────────────────
