@@ -1,0 +1,34 @@
+name: Mise à jour automatique de la documentation
+
+on:
+  push:
+    paths:
+      - 'frython/transpileur.py'
+
+jobs:
+  mettre-a-jour-docs:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2  # Nécessaire pour comparer avec le commit précédent
+
+      - name: Installer Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Comparer les mots-clés et mettre à jour les docs
+        run: python .github/scripts/update_docs.py
+
+      - name: Committer les changements si nécessaire
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add DOCUMENTATION.md UPDATE.md
+          git diff --staged --quiet || git commit -m "docs: mise à jour automatique — nouveaux mots-clés détectés 🐓"
+          git push
