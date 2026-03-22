@@ -146,6 +146,7 @@ MOTS_CLES_VERS_PYTHON = {
     'AvertissementUtilisateur': 'UserWarning',
     'AvertissementFutur': 'FutureWarning',
     'imprimer_erreur': 'sys.stderr.write',
+    'geler': 'frozenset',
 }
 
 METHODES_CHAINE = {
@@ -197,6 +198,7 @@ METHODES_CHAINE = {
     'diviser_lignes': 'splitlines',
     'formater_map': 'format_map',
     'compter_depuis': 'count',
+    'compter_tout': 'count',
 }
 
 METHODES_LISTE = {
@@ -354,6 +356,7 @@ MODULES_TRADUITS = {
     'environnement': 'dotenv',
     'test_rapide': 'pytest',
     'tortue': 'turtle',
+    'nombres': 'numbers',
 }
 
 PYTHON_VERS_MOTS_CLES = {v: k for k, v in MOTS_CLES_VERS_PYTHON.items()}
