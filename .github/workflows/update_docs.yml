@@ -1,10 +1,8 @@
 name: Mise à jour automatique de la documentation
-
 on:
   push:
     paths:
       - 'frython/transpileur.py'
-
 jobs:
   mettre-a-jour-docs:
     runs-on: ubuntu-latest
@@ -12,35 +10,28 @@ jobs:
     permissions:
       contents: write
       id-token: write
-
     steps:
       - name: Récupérer le code
         uses: actions/checkout@v4
         with:
           fetch-depth: 2
-
       - name: Installer Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-
       - name: Installer les outils de build
         run: pip install build
-
       - name: Comparer les mots-clés et mettre à jour les docs
         run: python .github/scripts/update_docs.py
-
       - name: Committer les changements
         run: |
           git config --global user.name "FrythonBot"
           git config --global user.email "frythonbot@users.noreply.github.com"
-          git add DOCUMENTATION.md UPDATE.md setup.py frython/__init__.py
+          git add DOCUMENTATION.md UPDATE.md setup.py frython/__init__.py README.md
           git add pyproject.toml 2>/dev/null || true
           git diff --staged --quiet || git commit -m "docs: mise à jour automatique — nouveaux mots-clés détectés 🐓"
           git push
-
       - name: Construire le paquet
         run: python -m build
-
       - name: Publier sur PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
