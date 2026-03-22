@@ -4,6 +4,21 @@
 
 ---
 
+## [1.0.4] — 2026-03-22
+
+
+### Ajouté
+
+- **Mots-clés et fonctions** — 1 nouveau(x):
+  - `imprimer_erreur` → `sys.stderr.write`
+- **Méthodes de listes** — 1 nouveau(x):
+  - `remplir` → `fill`
+- **Modules traduits** — 1 nouveau(x):
+  - `tortue` → `turtle`
+
+---
+
+
 ## [1.0.3] — 2026-03-22
 
 

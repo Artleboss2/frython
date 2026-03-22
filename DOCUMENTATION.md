@@ -495,6 +495,7 @@ déf calcul_lent():
 | `identifiant` | `id` |
 | `importer` | `import` |
 | `imprimer` | `print` |
+| `imprimer_erreur` | `sys.stderr.write` |
 | `instance_de` | `isinstance` |
 | `intervalle` | `range` |
 | `inverser` | `reversed` |
@@ -628,6 +629,7 @@ déf calcul_lent():
 | `longueur` | `__len__` |
 | `multiplier` | `__mul__` |
 | `premier` | `pop` |
+| `remplir` | `fill` |
 | `retirer` | `remove` |
 | `supprimer` | `remove` |
 | `trier` | `sort` |
@@ -762,6 +764,7 @@ déf calcul_lent():
 | `test_rapide` | `pytest` |
 | `tests` | `unittest` |
 | `threading` | `threading` |
+| `tortue` | `turtle` |
 | `traceback` | `traceback` |
 | `types_donnees` | `typing` |
 | `unittest` | `unittest` |
