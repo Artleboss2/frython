@@ -102,7 +102,7 @@ def trouver_mots_supprimes(anciens_dicts, nouveaux_dicts):
 # ── Version ────────────────────────────────────────────────────────────────
 
 def determiner_version():
-    """Lit la version actuelle dans UPDATE.md et incrémente le patch."""
+    """Lit la version actuelle dans UPDATE.md et incrémente le patch (avec rollover mineur)."""
     try:
         with open(UPDATE, "r", encoding="utf-8") as f:
             contenu = f.read()
@@ -111,7 +111,18 @@ def determiner_version():
             return "1.0.1"
         derniere = versions[0]
         majeur, mineur, patch = derniere.split(".")
-        return f"{majeur}.{mineur}.{int(patch) + 1}"
+        majeur, mineur, patch = int(majeur), int(mineur), int(patch)
+
+        if patch >= 9:
+            patch = 0
+            mineur += 1
+            if mineur >= 10:
+                mineur = 0
+                majeur += 1
+        else:
+            patch += 1
+
+        return f"{majeur}.{mineur}.{patch}"
     except FileNotFoundError:
         return "1.0.1"
 
