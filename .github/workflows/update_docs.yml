@@ -15,8 +15,7 @@ jobs:
       - name: Récupérer le code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 2  # Nécessaire pour comparer avec le commit précédent
-
+          fetch-depth: 2
       - name: Installer Python
         uses: actions/setup-python@v5
         with:
