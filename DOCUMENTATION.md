@@ -446,6 +446,7 @@ déf calcul_lent():
 | `Vrai` | `True` |
 | `absolu` | `abs` |
 | `afficher` | `print` |
+| `afficher_format` | `format` |
 | `affirmer` | `assert` |
 | `aide` | `help` |
 | `appeler` | `callable` |
@@ -511,6 +512,7 @@ déf calcul_lent():
 | `longueur_min` | `min` |
 | `mapper` | `map` |
 | `maximum` | `max` |
+| `memoire` | `memoryview` |
 | `minimum` | `min` |
 | `non` | `not` |
 | `nonlocal` | `nonlocal` |
@@ -572,6 +574,7 @@ déf calcul_lent():
 | `diviser` | `split` |
 | `diviser_droite` | `rsplit` |
 | `diviser_lignes` | `splitlines` |
+| `en_liste` | `split` |
 | `encoder` | `encode` |
 | `est_alpha` | `isalpha` |
 | `est_alphanum` | `isalnum` |
@@ -644,6 +647,7 @@ déf calcul_lent():
 
 | Frython | Python |
 |---------|--------|
+| `a_cle` | `has_key` |
 | `cles` | `keys` |
 | `contient` | `__contains__` |
 | `contient_cle` | `__contains__` |
@@ -721,6 +725,7 @@ déf calcul_lent():
 | `date` | `datetime` |
 | `datetime` | `datetime` |
 | `decimal_module` | `decimal` |
+| `decimal_precision` | `decimal` |
 | `donnees` | `pandas` |
 | `email` | `email` |
 | `encodage` | `base64` |

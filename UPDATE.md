@@ -4,6 +4,24 @@
 
 ---
 
+## [1.0.6] — 2026-03-22
+
+
+### Ajouté
+
+- **Mots-clés et fonctions** — 2 nouveau(x):
+  - `afficher_format` → `format`
+  - `memoire` → `memoryview`
+- **Méthodes de chaînes** — 1 nouveau(x):
+  - `en_liste` → `split`
+- **Méthodes de dictionnaires** — 1 nouveau(x):
+  - `a_cle` → `has_key`
+- **Modules traduits** — 1 nouveau(x):
+  - `decimal_precision` → `decimal`
+
+---
+
+
 ## [1.0.5] — 2026-03-22
 
 
