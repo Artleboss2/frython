@@ -145,6 +145,7 @@ MOTS_CLES_VERS_PYTHON = {
     'AvertissementSyntaxe': 'SyntaxWarning',
     'AvertissementUtilisateur': 'UserWarning',
     'AvertissementFutur': 'FutureWarning',
+    'imprimer_erreur': 'sys.stderr.write',
 }
 
 METHODES_CHAINE = {
@@ -221,6 +222,7 @@ METHODES_LISTE = {
     'longueur': '__len__',
     'multiplier': '__mul__',
     'copie_profonde': 'copy',
+    'remplir': 'fill',
 }
 
 METHODES_DICT = {
@@ -351,6 +353,7 @@ MODULES_TRADUITS = {
     'secret': 'secrets',
     'environnement': 'dotenv',
     'test_rapide': 'pytest',
+    'tortue': 'turtle',
 }
 
 PYTHON_VERS_MOTS_CLES = {v: k for k, v in MOTS_CLES_VERS_PYTHON.items()}
