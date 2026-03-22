@@ -1,8 +1,3 @@
-"""
-Frython - Transpileur
-Convertit le code source Frython en Python valide.
-"""
-
 import re
 
 MOTS_CLES_VERS_PYTHON = {
@@ -71,85 +66,85 @@ MOTS_CLES_VERS_PYTHON = {
     'super': 'super',
     'ouvrir': 'open',
     'fermer': 'close',
-	'identifiant': 'id',
-	'repr': 'repr',
-	'appeler': 'callable',
-	'executer': 'exec',
-	'evaluer': 'eval',
-	'octets': 'bytes',
-	'objet': 'object',
-	'propriete': 'property',
-	'statique': 'staticmethod',
-	'classique': 'classmethod',
-	'ErreurValeur': 'ValueError',
-	'ErreurType': 'TypeError',
-	'ErreurNom': 'NameError',
-	'ErreurIndex': 'IndexError',
-	'ErreurCle': 'KeyError',
-	'ErreurAttribut': 'AttributeError',
-	'ErreurImport': 'ImportError',
-	'ErreurMemoire': 'MemoryError',
-	'ErreurRecursion': 'RecursionError',
-	'ErreurSyntaxe': 'SyntaxError',
-	'ErreurDivisionZero': 'ZeroDivisionError',
-	'ErreurFichier': 'FileNotFoundError',
-	'ErreurPermission': 'PermissionError',
-	'ErreurArret': 'StopIteration',
-	'entree_standard': 'stdin',
-	'sortie_standard': 'stdout',
-	'tous': 'all',
-	'aucun': 'any',
-	'toutca': 'any',
-	'entier_long': 'int',
-	'complexe': 'complex',
-	'tableau': 'bytearray',
-	'vrai_faux': 'bool',
-	'fige': 'frozenset',
-	'tranche': 'slice',
-	'type_base': 'type',
-	'sous_classe': 'issubclass',
-	'instance_de': 'isinstance',
-	'imprimer': 'print',
-	'longueur_max': 'max',
-	'longueur_min': 'min',
-	'puissance': 'pow',
-	'divmod': 'divmod',
-	'hex': 'hex',
-	'octal': 'oct',
-	'binaire': 'bin',
-	'caractere': 'chr',
-	'ordinal': 'ord',
-	'globals': 'globals',
-	'locals': 'locals',
-	'entree': 'input',
-	'executer_fichier': 'execfile',
-	'formater_chaine': 'format',
-	'iter': 'iter',
-	'prochain': 'next',
-	'hash': 'hash',
-	'taille': 'sizeof',
-	'breakpoint': 'breakpoint',
-	'NotImplemented': 'NotImplemented',
-	'Ellipsis': 'Ellipsis',
-	'ErreurOS': 'OSError',
-	'ErreurES': 'IOError',
-	'ErreurConnexion': 'ConnectionError',
-	'ErreurDebordement': 'OverflowError',
-	'ErreurUnicode': 'UnicodeError',
-	'ErreurIndentation': 'IndentationError',
-	'ErreurTabulation': 'TabError',
-	'ErreurSysteme': 'SystemError',
-	'ErreurRuntime': 'RuntimeError',
-	'ErreurNotImplemented': 'NotImplementedError',
-	'ErreurTimeout': 'TimeoutError',
-	'ErreurInterruption': 'KeyboardInterrupt',
-	'ErreurAssertion': 'AssertionError',
-	'Avertissement': 'Warning',
-	'AvertissementDepreciation': 'DeprecationWarning',
-	'AvertissementRuntime': 'RuntimeWarning',
-	'AvertissementSyntaxe': 'SyntaxWarning',
-	'AvertissementUtilisateur': 'UserWarning',
-	'AvertissementFutur': 'FutureWarning',
+    'identifiant': 'id',
+    'repr': 'repr',
+    'appeler': 'callable',
+    'executer': 'exec',
+    'evaluer': 'eval',
+    'octets': 'bytes',
+    'objet': 'object',
+    'propriete': 'property',
+    'statique': 'staticmethod',
+    'classique': 'classmethod',
+    'ErreurValeur': 'ValueError',
+    'ErreurType': 'TypeError',
+    'ErreurNom': 'NameError',
+    'ErreurIndex': 'IndexError',
+    'ErreurCle': 'KeyError',
+    'ErreurAttribut': 'AttributeError',
+    'ErreurImport': 'ImportError',
+    'ErreurMemoire': 'MemoryError',
+    'ErreurRecursion': 'RecursionError',
+    'ErreurSyntaxe': 'SyntaxError',
+    'ErreurDivisionZero': 'ZeroDivisionError',
+    'ErreurFichier': 'FileNotFoundError',
+    'ErreurPermission': 'PermissionError',
+    'ErreurArret': 'StopIteration',
+    'entree_standard': 'stdin',
+    'sortie_standard': 'stdout',
+    'tous': 'all',
+    'aucun': 'any',
+    'toutca': 'any',
+    'entier_long': 'int',
+    'complexe': 'complex',
+    'tableau': 'bytearray',
+    'vrai_faux': 'bool',
+    'fige': 'frozenset',
+    'tranche': 'slice',
+    'type_base': 'type',
+    'sous_classe': 'issubclass',
+    'instance_de': 'isinstance',
+    'imprimer': 'print',
+    'longueur_max': 'max',
+    'longueur_min': 'min',
+    'puissance': 'pow',
+    'divmod': 'divmod',
+    'hex': 'hex',
+    'octal': 'oct',
+    'binaire': 'bin',
+    'caractere': 'chr',
+    'ordinal': 'ord',
+    'globals': 'globals',
+    'locals': 'locals',
+    'entree': 'input',
+    'executer_fichier': 'execfile',
+    'formater_chaine': 'format',
+    'iter': 'iter',
+    'prochain': 'next',
+    'hash': 'hash',
+    'taille': 'sizeof',
+    'breakpoint': 'breakpoint',
+    'NotImplemented': 'NotImplemented',
+    'Ellipsis': 'Ellipsis',
+    'ErreurOS': 'OSError',
+    'ErreurES': 'IOError',
+    'ErreurConnexion': 'ConnectionError',
+    'ErreurDebordement': 'OverflowError',
+    'ErreurUnicode': 'UnicodeError',
+    'ErreurIndentation': 'IndentationError',
+    'ErreurTabulation': 'TabError',
+    'ErreurSysteme': 'SystemError',
+    'ErreurRuntime': 'RuntimeError',
+    'ErreurNotImplemented': 'NotImplementedError',
+    'ErreurTimeout': 'TimeoutError',
+    'ErreurInterruption': 'KeyboardInterrupt',
+    'ErreurAssertion': 'AssertionError',
+    'Avertissement': 'Warning',
+    'AvertissementDepreciation': 'DeprecationWarning',
+    'AvertissementRuntime': 'RuntimeWarning',
+    'AvertissementSyntaxe': 'SyntaxWarning',
+    'AvertissementUtilisateur': 'UserWarning',
+    'AvertissementFutur': 'FutureWarning',
 }
 
 METHODES_CHAINE = {
@@ -178,30 +173,29 @@ METHODES_CHAINE = {
     'est_minuscule': 'islower',
     'compter': 'count',
     'indice': 'index',
-	'est_numerique': 'isnumeric',
-	'est_decimal': 'isdecimal',
-	'est_titre': 'istitle',
-	'centrer': 'center',
-	'aligner_gauche': 'ljust',
-	'aligner_droite': 'rjust',
-	'remplir_zeros': 'zfill',
-	'partitionner': 'partition',
-	'encoder': 'encode',
-	'expandre_tabs': 'expandtabs',
-	'supprimer_prefixe': 'removeprefix',
-	'supprimer_suffixe': 'removesuffix',
-	'est_ascii': 'isascii',
-	'est_identifiant': 'isidentifier',
-	'est_imprimable': 'isprintable',
-	'traduire': 'translate',
-	'maketrans': 'maketrans',
-	'rfind': 'rfind',
-	'rindex': 'rindex',
-	'rpartitionner': 'rpartition',
-	'diviser_droite': 'rsplit',
-	'diviser_lignes': 'splitlines',
-	'formater_map': 'format_map',
-	'compter_depuis': 'count',
+    'est_numerique': 'isnumeric',
+    'est_decimal': 'isdecimal',
+    'est_titre': 'istitle',
+    'centrer': 'center',
+    'aligner_gauche': 'ljust',
+    'aligner_droite': 'rjust',
+    'remplir_zeros': 'zfill',
+    'partitionner': 'partition',
+    'expandre_tabs': 'expandtabs',
+    'supprimer_prefixe': 'removeprefix',
+    'supprimer_suffixe': 'removesuffix',
+    'est_ascii': 'isascii',
+    'est_identifiant': 'isidentifier',
+    'est_imprimable': 'isprintable',
+    'traduire': 'translate',
+    'maketrans': 'maketrans',
+    'rfind': 'rfind',
+    'rindex': 'rindex',
+    'rpartitionner': 'rpartition',
+    'diviser_droite': 'rsplit',
+    'diviser_lignes': 'splitlines',
+    'formater_map': 'format_map',
+    'compter_depuis': 'count',
 }
 
 METHODES_LISTE = {
@@ -216,20 +210,17 @@ METHODES_LISTE = {
     'inverser': 'reverse',
     'compter': 'count',
     'indice': 'index',
-	'supprimer': 'remove',
-	'effacer': 'clear',
-	'indice': 'index',
-	'compter': 'count',
-	'copier': 'copy',
-	'annexer': 'append',
-	'concatener': 'extend',
-	'inserer_debut': 'insert',
-	'premier': 'pop',
-	'dernier': 'pop',
-	'existe': '__contains__',
-	'longueur': '__len__',
-	'multiplier': '__mul__',
-	'copie_profonde': 'copy',
+    'supprimer': 'remove',
+    'effacer': 'clear',
+    'annexer': 'append',
+    'concatener': 'extend',
+    'inserer_debut': 'insert',
+    'premier': 'pop',
+    'dernier': 'pop',
+    'existe': '__contains__',
+    'longueur': '__len__',
+    'multiplier': '__mul__',
+    'copie_profonde': 'copy',
 }
 
 METHODES_DICT = {
@@ -242,19 +233,15 @@ METHODES_DICT = {
     'vider': 'clear',
     'copier': 'copy',
     'contient_cle': '__contains__',
-	'effacer': 'clear',
-	'copier': 'copy',
-	'fusionner': 'update',
-	'extraire_defaut': 'setdefault',
-	'obtenir': 'get',
-	'extraire': 'pop',
-	'extraire_dernier': 'popitem',
-	'depuis_cles': 'fromkeys',
-	'inverser': 'items',
-	'longueur': '__len__',
-	'contient': '__contains__',
-	'supprimer': '__delitem__',
-	'obtenir_ou_creer': 'setdefault',
+    'effacer': 'clear',
+    'fusionner': 'update',
+    'extraire_defaut': 'setdefault',
+    'extraire_dernier': 'popitem',
+    'depuis_cles': 'fromkeys',
+    'inverser': 'items',
+    'longueur': '__len__',
+    'contient': '__contains__',
+    'obtenir_ou_creer': 'setdefault',
 }
 
 METHODES_ENSEMBLE = {
@@ -266,19 +253,19 @@ METHODES_ENSEMBLE = {
     'difference': 'difference',
     'vider': 'clear',
     'copier': 'copy',
-	'est_sous_ensemble': 'issubset',
-	'est_sur_ensemble': 'issuperset',
-	'difference_symetrique': 'symmetric_difference',
-	'est_disjoint': 'isdisjoint',
-	'mettre_a_jour': 'update',
-	'geler': 'frozenset',
-	'union_sur_place': 'update',
-	'intersection_sur_place': 'intersection_update',
-	'difference_sur_place': 'difference_update',
-	'diff_sym_sur_place': 'symmetric_difference_update',
-	'supprimer_si_existe': 'discard',
-	'extraire_aleatoire': 'pop',
-	'est_vide': '__len__',
+    'est_sous_ensemble': 'issubset',
+    'est_sur_ensemble': 'issuperset',
+    'difference_symetrique': 'symmetric_difference',
+    'est_disjoint': 'isdisjoint',
+    'mettre_a_jour': 'update',
+    'geler': 'frozenset',
+    'union_sur_place': 'update',
+    'intersection_sur_place': 'intersection_update',
+    'difference_sur_place': 'difference_update',
+    'diff_sym_sur_place': 'symmetric_difference_update',
+    'supprimer_si_existe': 'discard',
+    'extraire_aleatoire': 'pop',
+    'est_vide': '__len__',
 }
 
 MODULES_TRADUITS = {
@@ -312,130 +299,104 @@ MODULES_TRADUITS = {
     'argparse': 'argparse',
     'configparser': 'configparser',
     'sqlite3': 'sqlite3',
-	'mathematiques': 'math',
-	'aleatoire': 'random',
-	'systeme': 'sys',
-	'systeme_exploitation': 'os',
-	'chemin': 'os.path',
-	'temps': 'time',
-	'date': 'datetime',
-	'expression_reguliere': 're',
-	'collections': 'collections',
-	'iterateurs': 'itertools',
-	'fonctionnel': 'functools',
-	'chemin_fichier': 'pathlib',
-	'entree_sortie': 'io',
-	'copie': 'copy',
-	'copie_profonde': 'deepcopy',
-	'fractions': 'fractions',
-	'statistiques': 'statistics',
-	'hachage': 'hashlib',
-	'encodage': 'base64',
-	'reseau': 'urllib',
-	'http': 'http',
-	'socket': 'socket',
-	'fil': 'threading',
-	'multiprocessus': 'multiprocessing',
-	'sous_processus': 'subprocess',
-	'tests': 'unittest',
-	'journalisation': 'logging',
-	'arguments': 'argparse',
-	'configuration': 'configparser',
-	'base_donnees': 'sqlite3',
-	'csv': 'csv',
-	'json': 'json',
-	'xml': 'xml',
-	'html': 'html',
-	'email': 'email',
-	'compression': 'zipfile',
-	'archive': 'tarfile',
-	'chiffrement': 'cryptography',
-	'interface': 'tkinter',
-	'graphiques': 'matplotlib',
-	'donnees': 'pandas',
-	'calcul': 'numpy',
-	'images': 'PIL',
-	'web': 'requests',
-	'async_io': 'asyncio',
-	'signal': 'signal',
-	'plateforme': 'platform',
-	'inspection': 'inspect',
-	'abstrait': 'abc',
-	'types_donnees': 'typing',
-	'enum': 'enum',
-	'dataclasse': 'dataclasses',
-	'contextlib': 'contextlib',
-	'warnings': 'warnings',
-	'traceback': 'traceback',
-	'garbage': 'gc',
-	'weakref': 'weakref',
-	'struct': 'struct',
-	'binaire_io': 'io',
-	'uuid': 'uuid',
-	'secret': 'secrets',
-	'environnement': 'dotenv',
-	'test_rapide': 'pytest',
+    'mathematiques': 'math',
+    'chemin': 'os.path',
+    'date': 'datetime',
+    'expression_reguliere': 're',
+    'iterateurs': 'itertools',
+    'fonctionnel': 'functools',
+    'chemin_fichier': 'pathlib',
+    'entree_sortie': 'io',
+    'copie_profonde': 'deepcopy',
+    'hachage': 'hashlib',
+    'encodage': 'base64',
+    'reseau': 'urllib',
+    'fil': 'threading',
+    'multiprocessus': 'multiprocessing',
+    'sous_processus': 'subprocess',
+    'tests': 'unittest',
+    'journalisation': 'logging',
+    'arguments': 'argparse',
+    'configuration': 'configparser',
+    'base_donnees': 'sqlite3',
+    'csv': 'csv',
+    'xml': 'xml',
+    'html': 'html',
+    'email': 'email',
+    'compression': 'zipfile',
+    'archive': 'tarfile',
+    'chiffrement': 'cryptography',
+    'interface': 'tkinter',
+    'graphiques': 'matplotlib',
+    'donnees': 'pandas',
+    'calcul': 'numpy',
+    'images': 'PIL',
+    'web': 'requests',
+    'async_io': 'asyncio',
+    'signal': 'signal',
+    'plateforme': 'platform',
+    'inspection': 'inspect',
+    'abstrait': 'abc',
+    'types_donnees': 'typing',
+    'enum': 'enum',
+    'dataclasse': 'dataclasses',
+    'contextlib': 'contextlib',
+    'warnings': 'warnings',
+    'traceback': 'traceback',
+    'garbage': 'gc',
+    'weakref': 'weakref',
+    'struct': 'struct',
+    'binaire_io': 'io',
+    'uuid': 'uuid',
+    'secret': 'secrets',
+    'environnement': 'dotenv',
+    'test_rapide': 'pytest',
 }
 
 PYTHON_VERS_MOTS_CLES = {v: k for k, v in MOTS_CLES_VERS_PYTHON.items()}
 
 
 class Transpileur:
-    """Convertit le code Frython en code Python valide."""
 
     def __init__(self, source: str):
         self.source = source
         self.lignes = source.splitlines(keepends=True)
 
     def transpiler(self) -> str:
-        """Transpile le code Frython complet en Python."""
         resultat = []
         for ligne in self.lignes:
             resultat.append(self._transpiler_ligne(ligne))
-        code_python = ''.join(resultat)
-        return code_python
+        return ''.join(resultat)
 
     def _transpiler_ligne(self, ligne: str) -> str:
-        """Transpile une ligne de code Frython en Python."""
         stripped = ligne.lstrip()
         indentation = ligne[:len(ligne) - len(stripped)]
-
         if not stripped or stripped.startswith('#'):
             return ligne
         fin = '\n' if stripped.endswith('\n') else ''
         stripped = stripped.rstrip('\n')
-
         contenu = self._remplacer_tokens(stripped)
-
         return indentation + contenu + fin
 
     def _remplacer_tokens(self, code: str) -> str:
-        """Remplace les tokens Frython par leurs équivalents Python."""
         parties = self._separer_chaines(code)
         resultat = []
-
         for est_chaine, partie in parties:
             if est_chaine:
                 resultat.append(partie)
             else:
                 resultat.append(self._remplacer_mots_cles(partie))
-
         return ''.join(resultat)
 
     def _separer_chaines(self, code: str):
-        """Sépare le code en parties chaînes et non-chaînes.
-        Pour les f-strings, traduit les expressions dans {}.
-        """
         parties = []
         i = 0
         n = len(code)
-
         while i < n:
             char = code[i]
             if char in ('"', "'"):
                 est_fstring = (i > 0 and code[i-1].lower() == 'f') or \
                               (i > 1 and code[i-2].lower() == 'f' and code[i-1] in 'rRbB')
-
                 if code[i:i+3] in ('"""', "'''"):
                     delim = code[i:i+3]
                     fin = code.find(delim, i + 3)
@@ -454,10 +415,8 @@ class Transpileur:
                         j += 1
                     contenu = code[i:j+1]
                     i = j + 1
-
                 if est_fstring:
                     contenu = self._traduire_fstring(contenu)
-
                 parties.append((True, contenu))
             else:
                 j = i
@@ -466,11 +425,9 @@ class Transpileur:
                 if j > i:
                     parties.append((False, code[i:j]))
                 i = j
-
         return parties
 
     def _traduire_fstring(self, fstring: str) -> str:
-        """Traduit les expressions Frython dans une f-string."""
         resultat = []
         i = 0
         n = len(fstring)
@@ -494,26 +451,20 @@ class Transpileur:
         return ''.join(resultat)
 
     def _remplacer_mots_cles(self, code: str) -> str:
-        """Remplace les mots-clés Frython par Python en respectant les frontières de mots."""
         methodes_fusionnees = {}
         methodes_fusionnees.update(METHODES_ENSEMBLE)
         methodes_fusionnees.update(METHODES_DICT)
         methodes_fusionnees.update(METHODES_CHAINE)
         methodes_fusionnees.update(METHODES_LISTE)
-
         for fr, py in methodes_fusionnees.items():
             code = re.sub(r'\.' + re.escape(fr) + r'\b', '.' + py, code)
-
         for fr, py in MODULES_TRADUITS.items():
             code = re.sub(r'\b' + re.escape(fr) + r'\b', py, code)
-
         for fr, py in sorted(MOTS_CLES_VERS_PYTHON.items(), key=lambda x: -len(x[0])):
             code = re.sub(r'\b' + re.escape(fr) + r'\b', py, code)
-
         return code
 
 
 def transpiler(source: str) -> str:
-    """Fonction utilitaire pour transpiler du code Frython."""
     t = Transpileur(source)
     return t.transpiler()
