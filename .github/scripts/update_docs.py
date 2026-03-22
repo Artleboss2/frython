@@ -262,10 +262,48 @@ def afficher_resume(nouveautes, supprimes):
     print("\n" + "=" * 55 + "\n")
 
 
+# ── Mise à jour de la version dans setup.py et pyproject.toml ──────────────
+
+def mettre_a_jour_version_fichiers(version):
+    """Met à jour la version dans setup.py et pyproject.toml."""
+
+    # setup.py
+    try:
+        with open("setup.py", "r", encoding="utf-8") as f:
+            contenu = f.read()
+        contenu = re.sub(r"version='[\d\.]+'", f"version='{version}'", contenu)
+        with open("setup.py", "w", encoding="utf-8") as f:
+            f.write(contenu)
+        print(f"✅ setup.py → version {version}")
+    except FileNotFoundError:
+        print("⚠️  setup.py introuvable")
+
+    # pyproject.toml
+    try:
+        with open("pyproject.toml", "r", encoding="utf-8") as f:
+            contenu = f.read()
+        contenu = re.sub(r'version = "[\d\.]+"', f'version = "{version}"', contenu)
+        with open("pyproject.toml", "w", encoding="utf-8") as f:
+            f.write(contenu)
+        print(f"✅ pyproject.toml → version {version}")
+    except FileNotFoundError:
+        print("⚠️  pyproject.toml introuvable")
+
+    # frython/__init__.py
+    try:
+        with open("frython/__init__.py", "r", encoding="utf-8") as f:
+            contenu = f.read()
+        contenu = re.sub(r"__version__ = '[\d\.]+'", f"__version__ = '{version}'", contenu)
+        with open("frython/__init__.py", "w", encoding="utf-8") as f:
+            f.write(contenu)
+        print(f"✅ frython/__init__.py → version {version}")
+    except FileNotFoundError:
+        print("⚠️  frython/__init__.py introuvable")
+
+
 # ── Point d'entrée ─────────────────────────────────────────────────────────
 
 def main():
-    # Lire la version actuelle
     try:
         with open(TRANSPILEUR, "r", encoding="utf-8") as f:
             contenu_actuel = f.read()
@@ -273,30 +311,25 @@ def main():
         print(f"❌ Impossible de lire {TRANSPILEUR}")
         sys.exit(1)
 
-    # Lire la version précédente
     contenu_precedent = get_contenu_precedent()
 
-    # Extraire les mots-clés
     nouveaux_dicts = extraire_tous_les_mots(contenu_actuel)
     anciens_dicts  = extraire_tous_les_mots(contenu_precedent) if contenu_precedent else {}
 
-    # Trouver les différences
     nouveautes = trouver_nouveaux_mots(anciens_dicts, nouveaux_dicts)
     supprimes  = trouver_mots_supprimes(anciens_dicts, nouveaux_dicts)
 
-    # Afficher le résumé
     afficher_resume(nouveautes, supprimes)
 
-    # Mettre à jour les docs
     if nouveautes or supprimes:
         version = determiner_version()
         mettre_a_jour_update_md(nouveautes, supprimes, version)
         mettre_a_jour_documentation_md(nouveaux_dicts)
-        print(f"📦 Version documentée: {version}")
+        mettre_a_jour_version_fichiers(version)
+        print(f"📦 Nouvelle version: {version}")
     else:
-        # Rafraîchir quand même les tableaux complets
         mettre_a_jour_documentation_md(nouveaux_dicts)
-        print("📄 Tableaux DOCUMENTATION.md rafraîchis sans changement de version.")
+        print("📄 Tableaux rafraîchis — pas de nouvelle version.")
 
     print("✅ Terminé!\n")
 
