@@ -476,6 +476,7 @@ déf calcul_lent():
 | `entier` | `int` |
 | `entier_long` | `int` |
 | `entree` | `input` |
+| `entree_erreur` | `stderr` |
 | `entree_standard` | `stdin` |
 | `enumerer` | `enumerate` |
 | `essayer` | `try` |
@@ -488,6 +489,7 @@ déf calcul_lent():
 | `fige` | `frozenset` |
 | `filtrer` | `filter` |
 | `formater_chaine` | `format` |
+| `geler` | `frozenset` |
 | `global` | `global` |
 | `globals` | `globals` |
 | `hash` | `hash` |
@@ -564,6 +566,7 @@ déf calcul_lent():
 | `commencer_par` | `startswith` |
 | `compter` | `count` |
 | `compter_depuis` | `count` |
+| `compter_tout` | `count` |
 | `contient` | `__contains__` |
 | `decoder` | `decode` |
 | `diviser` | `split` |
@@ -630,6 +633,7 @@ déf calcul_lent():
 | `multiplier` | `__mul__` |
 | `premier` | `pop` |
 | `remplir` | `fill` |
+| `remplir_avec` | `extend` |
 | `retirer` | `remove` |
 | `supprimer` | `remove` |
 | `trier` | `sort` |
@@ -711,6 +715,7 @@ déf calcul_lent():
 | `contextlib` | `contextlib` |
 | `copie` | `copy` |
 | `copie_profonde` | `deepcopy` |
+| `couleur` | `colorsys` |
 | `csv` | `csv` |
 | `dataclasse` | `dataclasses` |
 | `date` | `datetime` |
@@ -746,6 +751,7 @@ déf calcul_lent():
 | `mathématiques` | `math` |
 | `multiprocessing` | `multiprocessing` |
 | `multiprocessus` | `multiprocessing` |
+| `nombres` | `numbers` |
 | `pathlib` | `pathlib` |
 | `plateforme` | `platform` |
 | `re` | `re` |

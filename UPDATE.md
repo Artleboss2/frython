@@ -4,6 +4,21 @@
 
 ---
 
+## [1.0.5] — 2026-03-22
+
+
+### Ajouté
+
+- **Mots-clés et fonctions** — 1 nouveau(x):
+  - `entree_erreur` → `stderr`
+- **Méthodes de listes** — 1 nouveau(x):
+  - `remplir_avec` → `extend`
+- **Modules traduits** — 1 nouveau(x):
+  - `couleur` → `colorsys`
+
+---
+
+
 ## [1.0.4] — 2026-03-22
 
 
