@@ -148,6 +148,8 @@ MOTS_CLES_VERS_PYTHON = {
     'imprimer_erreur': 'sys.stderr.write',
     'geler': 'frozenset',
     'entree_erreur': 'stderr',
+    'afficher_format': 'format',
+    'memoire': 'memoryview',
 }
 
 METHODES_CHAINE = {
@@ -200,6 +202,7 @@ METHODES_CHAINE = {
     'formater_map': 'format_map',
     'compter_depuis': 'count',
     'compter_tout': 'count',
+    'en_liste': 'split',
 }
 
 METHODES_LISTE = {
@@ -248,6 +251,7 @@ METHODES_DICT = {
     'longueur': '__len__',
     'contient': '__contains__',
     'obtenir_ou_creer': 'setdefault',
+    'a_cle': 'has_key',
 }
 
 METHODES_ENSEMBLE = {
@@ -360,6 +364,7 @@ MODULES_TRADUITS = {
     'tortue': 'turtle',
     'nombres': 'numbers',
     'couleur': 'colorsys',
+    'decimal_precision': 'decimal',
 }
 
 PYTHON_VERS_MOTS_CLES = {v: k for k, v in MOTS_CLES_VERS_PYTHON.items()}
