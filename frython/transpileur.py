@@ -715,7 +715,6 @@ MOTS_CLES_VERS_PYTHON = {
 	'functorch.hessienne': 'functorch.hessian',
 	'functorch.vmap': 'functorch.vmap',
 	'functorch.rendre_fonctionnel': 'functorch.make_functional',
-	'Vive la france': 'print("Vive la france")
 }
 
 METHODES_CHAINE = {
