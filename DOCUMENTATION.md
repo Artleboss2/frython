@@ -443,6 +443,7 @@ déf calcul_lent():
 | `Faux` | `False` |
 | `NotImplemented` | `NotImplemented` |
 | `Rien` | `None` |
+| `Vive la france` | `print(` |
 | `Vrai` | `True` |
 | `__construire_classe__` | `NATIVE.__build_class__` |
 | `__importer__` | `NATIVE.__import__` |

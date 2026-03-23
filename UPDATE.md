@@ -4,6 +4,17 @@
 
 ---
 
+## [1.1.1] — 2026-03-23
+
+
+### Ajouté
+
+- **Mots-clés et fonctions** — 1 nouveau(x):
+  - `Vive la france` → `print(`
+
+---
+
+
 ## [1.1.0] — 2026-03-22
 
 
