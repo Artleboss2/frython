@@ -4,6 +4,17 @@
 
 ---
 
+## [1.1.2] — 2026-03-23
+
+
+### Supprimé
+
+- **Mots-clés et fonctions** — 1 supprimé(s):
+  - `Vive la france` (était `print(`)
+
+---
+
+
 ## [1.1.1] — 2026-03-23
 
 
