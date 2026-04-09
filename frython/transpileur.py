@@ -1037,6 +1037,7 @@ MODULES_TRADUITS = {
 	'zipimport': 'zipimport',
 	'zlib': 'zlib',
 	'zoneinfo': 'zoneinfo',
+	'nonlocalise': 'nonlocal',
 }
 
 PYTHON_VERS_MOTS_CLES = {v: k for k, v in MOTS_CLES_VERS_PYTHON.items()}
