@@ -1,11 +1,9 @@
 """
 Frython - Point d'entrée en ligne de commande
 """
-
 import sys
 import os
 import argparse
-
 def main():
     analyseur = argparse.ArgumentParser(
         prog='frython',
@@ -18,8 +16,8 @@ Exemples:
   frython -t programme.fy         Affiche le code Python transpilé
   frython -v programme.fy         Mode verbeux (affiche le code Python)
   frython -c "afficher('Bonjour')"  Exécute une commande directe
+  frython --traduire script.py    Traduit un fichier Python en Frython (.fy)
   frython --version               Affiche la version
-
 Syntaxe Frython (exemples):
   afficher("Bonjour le monde!")
   si x > 0:
@@ -28,7 +26,6 @@ Syntaxe Frython (exemples):
       afficher("négatif")
         """
     )
-
     analyseur.add_argument(
         'fichier',
         nargs='?',
@@ -59,19 +56,31 @@ Syntaxe Frython (exemples):
         action='store_true',
         help='Afficher tous les mots-clés Frython'
     )
-
+    analyseur.add_argument(
+        '--traduire', '-tr',
+        metavar='FICHIER.py',
+        help='Traduire un fichier Python (.py) en Frython (.fy)'
+    )
     args = analyseur.parse_args()
-
     sys.path.insert(0, os.getcwd())
-
     from frython.interpreteur import InterpreteurFrython
     from frython.transpileur import transpiler
-
     if args.mots_cles:
         interp = InterpreteurFrython()
         interp._afficher_mots_cles()
         return
-
+    if args.traduire:
+        from frython.traducteur import traduire_fichier
+        try:
+            sortie = traduire_fichier(args.traduire)
+            print(f"✅ Traduit avec succès : {args.traduire} → {sortie}")
+        except ValueError as e:
+            print(f"❌ {e}", file=sys.stderr)
+            sys.exit(1)
+        except FileNotFoundError:
+            print(f"❌ Fichier '{args.traduire}' introuvable.", file=sys.stderr)
+            sys.exit(1)
+        return
     if args.transpiler and args.fichier:
         try:
             with open(args.fichier, 'r', encoding='utf-8') as f:
@@ -85,21 +94,15 @@ Syntaxe Frython (exemples):
             print(f"❌ Fichier '{args.fichier}' introuvable.", file=sys.stderr)
             sys.exit(1)
         return
-
     interp = InterpreteurFrython(verbeux=args.verbeux)
-
     if args.commande:
         code_sortie = interp.executer_source(args.commande, nom_fichier='<commande>')
         sys.exit(code_sortie)
-
     if args.fichier:
         if not args.fichier.endswith('.fy'):
             print(f"⚠️  Attention: '{args.fichier}' n'a pas l'extension .fy", file=sys.stderr)
         code_sortie = interp.executer_fichier(args.fichier)
         sys.exit(code_sortie)
-
     interp.repl()
-
-
 if __name__ == '__main__':
     main()
