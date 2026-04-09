@@ -1354,6 +1354,7 @@ déf calcul_lent():
 | `nis` | `nis` |
 | `nntplib` | `nntplib` |
 | `nombres` | `numbers` |
+| `nonlocalise` | `nonlocal` |
 | `operateur` | `operator` |
 | `optparse` | `optparse` |
 | `os_chemin` | `os.path` |

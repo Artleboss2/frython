@@ -4,6 +4,17 @@
 
 ---
 
+## [1.1.3] — 2026-04-09
+
+
+### Ajouté
+
+- **Modules traduits** — 1 nouveau(x):
+  - `nonlocalise` → `nonlocal`
+
+---
+
+
 ## [1.1.2] — 2026-03-23
 
 

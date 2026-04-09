@@ -8,7 +8,7 @@ Usage:
     frython -t mon_programme.fy    # Voir le code Python généré (transpilation)
     frython --traduire script.py   # Traduire un fichier Python en Frython
 """
-__version__ = '1.1.2'
+__version__ = '1.1.3'
 __auteur__ = 'La Communauté Frython'
 __licence__ = 'MIT'
 __description__ = 'Python en français, sacré bleu ! 🐓'
